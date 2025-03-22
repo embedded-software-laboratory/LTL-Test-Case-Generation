@@ -1,0 +1,68 @@
+# only for discrepancy time > 0, the first call of TON ends with TON.Q being false
+# that is, only with this precondition "(fb.S_ChannelA && !fb.S_ChannelB) -> (!fb.T_1.Q && fb.DiagCode = 34818)" is correct
+
+G(                                                                      
+!(!fb.Activate)                                                  ||   (!fb.T_1.Q && fb.DiagCode = 0     && !fb.Ready && !fb.S_EquivalentOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA && !fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 34817 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA && !fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 34817 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+
+!(fb.Activate &&  fb.S_ChannelA && !fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 34818 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA && !fb.S_ChannelB && !fb.T_1.Q)  ||   (!fb.T_1.Q && fb.DiagCode = 34817 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_ChannelA && !fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 34818 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_ChannelA &&  fb.S_ChannelB && !fb.T_1.Q)  ||   (!fb.T_1.Q && fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_EquivalentOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_ChannelA &&  fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_EquivalentOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA &&  fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 34822 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA && !fb.S_ChannelB && !fb.T_1.Q)  ||   (!fb.T_1.Q && fb.DiagCode = 34817 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+
+!(fb.Activate && !fb.S_ChannelA &&  fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 34820 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA && !fb.S_ChannelB && !fb.T_1.Q)  ||   (!fb.T_1.Q && fb.DiagCode = 34817 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA &&  fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 34820 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_ChannelA &&  fb.S_ChannelB && !fb.T_1.Q)  ||   (!fb.T_1.Q && fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_EquivalentOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA && !fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 34817 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+
+!(fb.Activate &&  fb.S_ChannelA &&  fb.S_ChannelB)               ||   (!fb.T_1.Q && fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_EquivalentOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_ChannelA && !fb.S_ChannelB)               ||([( !fb.T_1.Q && fb.DiagCode = 34822 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error)   U(
+!(fb.Activate &&  fb.S_ChannelA && !fb.S_ChannelB)               ||   ( fb.T_1.Q && fb.DiagCode = 49200 &&  fb.Ready && !fb.S_EquivalentOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate &&  fb.S_ChannelA && !fb.S_ChannelB)               ||   ( fb.T_1.Q && fb.DiagCode = 49200 &&  fb.Ready && !fb.S_EquivalentOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA && !fb.S_ChannelB)               ||   ( fb.T_1.Q && fb.DiagCode = 34817 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+
+!(fb.Activate &&  fb.S_ChannelA && !fb.S_ChannelB)               ||([( !fb.T_1.Q && fb.DiagCode = 34818 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error)   U(
+!(fb.Activate &&  fb.S_ChannelA && !fb.S_ChannelB)               ||   ( fb.T_1.Q && fb.DiagCode = 49168 &&  fb.Ready && !fb.S_EquivalentOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate &&  fb.S_ChannelA && !fb.S_ChannelB)               ||   ( fb.T_1.Q && fb.DiagCode = 49168 &&  fb.Ready && !fb.S_EquivalentOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA && !fb.S_ChannelB)               ||   ( fb.T_1.Q && fb.DiagCode = 34817 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error && X(
+
+!(fb.Activate && !fb.S_ChannelA &&  fb.S_ChannelB)               ||([( !fb.T_1.Q && fb.DiagCode = 34820 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error)   U(
+!(fb.Activate && !fb.S_ChannelA &&  fb.S_ChannelB)               ||   ( fb.T_1.Q && fb.DiagCode = 49184 &&  fb.Ready && !fb.S_EquivalentOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate &&  fb.S_ChannelA && !fb.S_ChannelB)               ||   ( fb.T_1.Q && fb.DiagCode = 49184 &&  fb.Ready && !fb.S_EquivalentOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate && !fb.S_ChannelA && !fb.S_ChannelB)               ||   ( fb.T_1.Q && fb.DiagCode = 34817 &&  fb.Ready && !fb.S_EquivalentOut &&  fb.SafetyDemand && !fb.Error)
+))
+))
+)])
+))
+))
+))
+)])
+))
+))
+))
+)])
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+)
+
+
+

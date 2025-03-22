@@ -1,0 +1,146 @@
+G(                                                                      
+!(!fb.Activate)                                  || (fb.DiagCode = 0     && !fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 32769 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+
+#C010, 49168
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 49168 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 49168 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand &&  fb.Error && X(
+# step to "buttons released" before reset again to get that branch
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(!fb.Activate)                                  || (fb.DiagCode = 0     && !fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 32769 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+
+#C020, 49184
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 49184 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 49184 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(!fb.Activate)                                  || (fb.DiagCode = 0     && !fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 32769 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+
+#C030, 49200
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 49200 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 49200 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand &&  fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(!fb.Activate)                                  || (fb.DiagCode = 0     && !fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 32769 &&  fb.Ready && !fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+
+# "buttons released" 8802, 34818 - with self loop
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+
+# "buttons actuated" 8000, 32768
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+
+# "button 2 released" 8808, 34824
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34824 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34824 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+
+# "locked off" 880C, 34828
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34828 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34828 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+
+# "button 1 released" 880A, 34826
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34826 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34826 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+
+# branches between these states
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34828 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34824 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34826 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34824 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34826 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34824 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34828 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+
+# "button 1 actuated" 8804, 34820
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34820 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34820 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34820 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+
+# "locked on" 880E, 34830
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34830 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34830 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34820 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+
+# "button 2 actuated" 8806, 34822
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34822 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34822 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34822 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34830 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 && !fb.S_Button2) || (fb.DiagCode = 34818 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate && !fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 34822 &&  fb.Ready && !fb.S_TwoHandOut &&  fb.SafetyDemand && !fb.Error && X(
+!(fb.Activate &&  fb.S_Button1 &&  fb.S_Button2) || (fb.DiagCode = 32768 &&  fb.Ready &&  fb.S_TwoHandOut && !fb.SafetyDemand && !fb.Error)
+
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+))
+)

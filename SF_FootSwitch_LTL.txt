@@ -1,0 +1,93 @@
+#SF_FootSwitch_LTL.txt
+
+#testname=SF_FootSwitch_Test
+#testedFbName=SF_FootSwitch_BranchCounters
+
+
+G(
+# inactive with self loop
+(!fb.Activate && !fb.S_SafetyActive && !fb.S_FootSwitchCh1 && !fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> (!fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode =     0 && X(
+
+# basic operation mode (S_SafetyActive = FALSE) (and self loop)
+( fb.Activate && !fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32772 && X(
+( fb.Activate && !fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32772 && X(
+# safe operation mode (S_SafetyActive = TRUE)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32773 && X(
+
+# position 1 (with self loop)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32774 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32774 && X(
+
+# position 2 (with self loop)
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready &&  fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32768 && X(
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready &&  fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32768 && X(
+
+# back to position 1
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32774 && X(
+
+# back to basic operation mode, then safe operation mode
+( fb.Activate && !fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32772 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32773 && X(
+
+# operation error 1 - activation with foot switch NOT in position 1 (here: position 2) (and self loop)
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49440 && X(
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49440 && X(
+
+# operation error 2 - foot switch in position 1 after 49440; with Reset to be able to go into reset error afterwards
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset &&  fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49472 && X(
+
+# reset error 1 - static Reset detected in 49472 (and self loop)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset &&  fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49473 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset &&  fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49473 && X(
+
+# back to operation error 2 when Reset is released (and self loop)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49472 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49472 && X(
+
+# back to operation error 1 by foot switch NOT in position 1, and then to operation error 2 again with foot switch in position 1
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49440 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49472 && X(
+
+# back to position 1 by rising edge on Reset
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset &&  fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32774 && X(
+
+# position 3 (by both channels false) (and self loop with ch1 && !ch2)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 && !fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 34832 && X(
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 && !fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 34832 && X(
+
+# back to position 1
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32774 && X(
+
+# position 2
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready &&  fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32768 && X(
+
+# position 3
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 && !fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 34832 && X(
+
+# operation error 3 - foot switch in position 2 after position 3 (and self loop)
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49504 && X(
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49504 && X(
+
+# operation error 4 - foot switch NOT in position 2 after 49504 (here: position 1); with Reset to be able to go into reset error afterwards 
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset &&  fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49536 && X(
+
+# reset error 2 - static Reset detected in 49536 (and self loop)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset &&  fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49537 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset &&  fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49537 && X(
+
+# back to operation error 4 when Reset is released (and self loop)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49536 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49536 && X(
+
+# again operation error 3 by foot switch in position 2, then back to operation error 4 by foot switch NOT in position 2
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49504 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49536 && X(
+
+# position 3 by rising edge on Reset
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_FootSwitchCh1 && !fb.S_FootSwitchCh2 && !fb.S_AutoReset &&  fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 34832 && X(
+
+# back to S_SafetyActive = FALSE
+( fb.Activate && !fb.S_SafetyActive && !fb.S_FootSwitchCh1 &&  fb.S_FootSwitchCh2 && !fb.S_AutoReset && !fb.Reset) -> ( fb.Ready && !fb.S_FootSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32772)
+
+))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+)

@@ -1,0 +1,78 @@
+#SF_EnableSwitch2_LTL.txt
+
+#testname=SF_EnableSwitch2_Test
+#testedFbName=SF_EnableSwitch2_BranchCounters
+
+
+G(
+# inactive with self loop
+(!fb.Activate && !fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> (!fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode =     0 && X(
+
+# basic operation mode (S_SafetyActive = FALSE) (and self loop)
+( fb.Activate && !fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32770 && X(
+( fb.Activate && !fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32770 && X(
+
+# safe operation mode (S_SafetyActive = TRUE) (self loop unreachable)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32772 && X(
+
+# NOT enabled (with self loop)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 34818 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 34818 && X(
+
+# enabled (with self loop)
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_EnableIn && !fb.Reset) -> ( fb.Ready &&  fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32768 && X(
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_EnableIn && !fb.Reset) -> ( fb.Ready &&  fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32768 && X(
+
+# back to NOT enabled
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 34818 && X(
+
+# back to basic operation mode, then safe operation mode
+( fb.Activate && !fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32770 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32772 && X(
+
+# operation error 1 - activation with enabled on (C010); with Reset to be able to go into reset error afterwards
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_EnableIn &&  fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49168 && X(
+
+# reset error 1 - static Reset detected in Cx10 (and self loop)
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_EnableIn &&  fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49169 && X(
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_EnableIn &&  fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49169 && X(
+
+# back to operation error 1 (with enabled on, C010) when Reset is released (and self loop)
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49168 && X(
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49168 && X(
+
+# self loop into C410, and self loop in C410
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand &&  fb.ResetRequest &&  fb.Error && fb.DiagCode = 50192 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand &&  fb.ResetRequest &&  fb.Error && fb.DiagCode = 50192 && X(
+
+# self loop back into C010
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49168 && X(
+
+# to NOT enabled state by rising edge on Reset
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn &&  fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 34818 && X(
+
+# back to S_SafetyActive = FALSE
+( fb.Activate && !fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32770 && X(
+
+# to basic operation mode, to safe operation mode
+( fb.Activate && !fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32770 && X(
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32772 && X(
+
+# operation error 1
+( fb.Activate &&  fb.S_SafetyActive &&  fb.S_EnableIn &&  fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49168 && X(
+
+# reset error 1
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn &&  fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest &&  fb.Error && fb.DiagCode = 49169 && X(
+
+# back to operation error 1 (with enabled still off, C410)
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand &&  fb.ResetRequest &&  fb.Error && fb.DiagCode = 50192 && X(
+
+# to NOT enabled state by rising edge on Reset
+( fb.Activate &&  fb.S_SafetyActive && !fb.S_EnableIn &&  fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut &&  fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 34818 && X(
+
+# back to S_SafetyActive = FALSE
+( fb.Activate && !fb.S_SafetyActive && !fb.S_EnableIn && !fb.Reset) -> ( fb.Ready && !fb.S_EnableSwitchOut && !fb.SafetyDemand && !fb.ResetRequest && !fb.Error && fb.DiagCode = 32770)
+
+
+))))))))))))))))))))))))))))))))))))))))))))))))))))))
+)

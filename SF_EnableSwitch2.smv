@@ -1,0 +1,278 @@
+-- Model
+MODULE main
+	VAR
+		loc : {init_pv, end, loop_start, prepare_BoC, l_main_call, prepare_EoC, verificationLoop_VerificationLoop_init, verificationLoop_VerificationLoop_l13, verificationLoop_VerificationLoop_l22, verificationLoop_VerificationLoop_l29, verificationLoop_VerificationLoop_l35, verificationLoop_VerificationLoop_l41, verificationLoop_VerificationLoop_l51, verificationLoop_VerificationLoop_l61, verificationLoop_VerificationLoop_l69, verificationLoop_VerificationLoop_l71, verificationLoop_VerificationLoop_l124, x12, x82, x120, x164, x198, x246, x268, x284};
+		instance_Activate : boolean; -- frozen
+		instance_S_SafetyActive : boolean; -- frozen
+		instance_S_EnableIn : boolean; -- frozen
+		instance_Reset : boolean; -- frozen
+		instance_Ready : boolean; -- frozen
+		instance_S_EnableSwitchOut : boolean; -- frozen
+		instance_SafetyDemand : boolean; -- frozen
+		instance_ResetRequest : boolean; -- frozen
+		instance_Error : boolean; -- frozen
+		instance_DiagCode : unsigned word[16]; -- frozen
+		instance_Reset_Before : boolean; -- frozen
+		EoC : boolean; -- frozen
+		BoC : boolean; -- frozen
+	
+	ASSIGN
+		-- CFA structure (loc)
+		init(loc) := init_pv;
+		next(loc) := case
+			loc = init_pv & (TRUE) : loop_start;
+			loc = loop_start & (TRUE) : prepare_BoC;
+			loc = prepare_BoC & (TRUE) : l_main_call;
+			loc = verificationLoop_VerificationLoop_l124 & (TRUE) : prepare_EoC;
+			loc = prepare_EoC & (TRUE) : loop_start;
+			loc = verificationLoop_VerificationLoop_init & (!(instance_Activate)) : verificationLoop_VerificationLoop_l124;
+			loc = verificationLoop_VerificationLoop_init & ((!(!(instance_Activate))) & (!(instance_S_SafetyActive))) : x12;
+			loc = verificationLoop_VerificationLoop_init & (((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & ((instance_DiagCode) = (0ud16_0))) : verificationLoop_VerificationLoop_l13;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32770))) & (instance_S_SafetyActive)) : verificationLoop_VerificationLoop_l22;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32770))) & (!(instance_S_SafetyActive))) : verificationLoop_VerificationLoop_l22;
+			loc = verificationLoop_VerificationLoop_l22 & (TRUE) : verificationLoop_VerificationLoop_l13;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & ((instance_DiagCode) = (0ud16_32772))) & (instance_S_EnableIn)) : verificationLoop_VerificationLoop_l29;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & ((instance_DiagCode) = (0ud16_32772))) & (!(instance_S_EnableIn))) : verificationLoop_VerificationLoop_l29;
+			loc = verificationLoop_VerificationLoop_l29 & (TRUE) : verificationLoop_VerificationLoop_l13;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & ((instance_DiagCode) = (0ud16_34818))) & (instance_S_EnableIn)) : verificationLoop_VerificationLoop_l35;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & ((instance_DiagCode) = (0ud16_34818))) & (!(instance_S_EnableIn))) : verificationLoop_VerificationLoop_l35;
+			loc = verificationLoop_VerificationLoop_l35 & (TRUE) : verificationLoop_VerificationLoop_l13;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_32768))) & (!(instance_S_EnableIn))) : verificationLoop_VerificationLoop_l41;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_32768))) & (!(!(instance_S_EnableIn)))) : verificationLoop_VerificationLoop_l41;
+			loc = verificationLoop_VerificationLoop_l41 & (TRUE) : verificationLoop_VerificationLoop_l13;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_49168))) & ((instance_Reset) & (instance_Reset_Before))) : verificationLoop_VerificationLoop_l51;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_49168))) & ((!((instance_Reset) & (instance_Reset_Before))) & (((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) : verificationLoop_VerificationLoop_l51;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_49168))) & (((!((instance_Reset) & (instance_Reset_Before))) & (!(((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) & (!(instance_S_EnableIn)))) : verificationLoop_VerificationLoop_l51;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_49168))) & ((!((instance_Reset) & (instance_Reset_Before))) & ((!((!((instance_Reset) & (instance_Reset_Before))) & (((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) & (!(((!((instance_Reset) & (instance_Reset_Before))) & (!(((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) & (!(instance_S_EnableIn))))))) : verificationLoop_VerificationLoop_l51;
+			loc = verificationLoop_VerificationLoop_l51 & (TRUE) : verificationLoop_VerificationLoop_l13;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & ((instance_DiagCode) = (0ud16_50192))) & ((instance_Reset) & (instance_Reset_Before))) : verificationLoop_VerificationLoop_l61;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & ((instance_DiagCode) = (0ud16_50192))) & ((!((instance_Reset) & (instance_Reset_Before))) & (((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) : verificationLoop_VerificationLoop_l61;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & ((instance_DiagCode) = (0ud16_50192))) & (((!((instance_Reset) & (instance_Reset_Before))) & (!(((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) & (instance_S_EnableIn))) : verificationLoop_VerificationLoop_l61;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & ((instance_DiagCode) = (0ud16_50192))) & ((!((instance_Reset) & (instance_Reset_Before))) & ((!((!((instance_Reset) & (instance_Reset_Before))) & (((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) & (!(((!((instance_Reset) & (instance_Reset_Before))) & (!(((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) & (instance_S_EnableIn)))))) : verificationLoop_VerificationLoop_l61;
+			loc = verificationLoop_VerificationLoop_l61 & (TRUE) : verificationLoop_VerificationLoop_l13;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & (!((instance_DiagCode) = (0ud16_50192)))) & (!((instance_DiagCode) = (0ud16_49169)))) : verificationLoop_VerificationLoop_l13;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & (!((instance_DiagCode) = (0ud16_50192)))) & ((instance_DiagCode) = (0ud16_49169))) & (!(instance_Reset))) & (instance_S_EnableIn)) : verificationLoop_VerificationLoop_l69;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & (!((instance_DiagCode) = (0ud16_50192)))) & ((instance_DiagCode) = (0ud16_49169))) & (!(instance_Reset))) & (!(instance_S_EnableIn))) : verificationLoop_VerificationLoop_l69;
+			loc = verificationLoop_VerificationLoop_init & (((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & (!((instance_DiagCode) = (0ud16_50192)))) & ((instance_DiagCode) = (0ud16_49169))) & (!(!(instance_Reset)))) : verificationLoop_VerificationLoop_l71;
+			loc = verificationLoop_VerificationLoop_l69 & (TRUE) : verificationLoop_VerificationLoop_l71;
+			loc = verificationLoop_VerificationLoop_l71 & (TRUE) : verificationLoop_VerificationLoop_l13;
+			loc = verificationLoop_VerificationLoop_l13 & (TRUE) : x12;
+			loc = l_main_call & (TRUE) : verificationLoop_VerificationLoop_init;
+			loc = x12 & (TRUE) : x82;
+			loc = x82 & (TRUE) : x120;
+			loc = x120 & (TRUE) : x164;
+			loc = x164 & (TRUE) : x198;
+			loc = x198 & (TRUE) : x246;
+			loc = x246 & (TRUE) : x268;
+			loc = x268 & (TRUE) : x284;
+			loc = x284 & (TRUE) : verificationLoop_VerificationLoop_l124;
+			TRUE: loc;
+		esac;
+		
+		init(instance_Activate) := FALSE;
+		next(instance_Activate) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_Activate;
+		esac;
+		init(instance_S_SafetyActive) := FALSE;
+		next(instance_S_SafetyActive) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_S_SafetyActive;
+		esac;
+		init(instance_S_EnableIn) := FALSE;
+		next(instance_S_EnableIn) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_S_EnableIn;
+		esac;
+		init(instance_Reset) := FALSE;
+		next(instance_Reset) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_Reset;
+		esac;
+		init(instance_Ready) := FALSE;
+		next(instance_Ready) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_Ready);
+			loc = x12 & (TRUE) : ((instance_DiagCode) = (0ud16_32770)) | ((!((instance_DiagCode) = (0ud16_32770))) & (instance_Ready));
+			loc = x82 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32770))) & (((instance_DiagCode) = (0ud16_32772)) | ((!((instance_DiagCode) = (0ud16_32772))) & (instance_Ready))));
+			loc = x120 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32772))) & (((instance_DiagCode) = (0ud16_34818)) | ((!((instance_DiagCode) = (0ud16_34818))) & (instance_Ready))))));
+			loc = x164 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34818))) & (((instance_DiagCode) = (0ud16_32768)) | ((!((instance_DiagCode) = (0ud16_32768))) & (instance_Ready))))))));
+			loc = x198 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & (((instance_DiagCode) = (0ud16_49169)) | ((!((instance_DiagCode) = (0ud16_49169))) & (instance_Ready))))))))));
+			loc = x246 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_49169))) & (((instance_DiagCode) = (0ud16_49168)) | ((!((instance_DiagCode) = (0ud16_49168))) & (instance_Ready))))))))))));
+			loc = x268 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_49169))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_49168))) & (((instance_DiagCode) = (0ud16_50192)) | ((!((instance_DiagCode) = (0ud16_50192))) & (instance_Ready))))))))))))));
+			TRUE  : instance_Ready;
+		esac;
+		init(instance_S_EnableSwitchOut) := FALSE;
+		next(instance_S_EnableSwitchOut) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_S_EnableSwitchOut);
+			loc = x12 & (TRUE) : (!((instance_DiagCode) = (0ud16_32770))) & (instance_S_EnableSwitchOut);
+			loc = x82 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((!((instance_DiagCode) = (0ud16_32772))) & (instance_S_EnableSwitchOut)));
+			loc = x120 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((!((instance_DiagCode) = (0ud16_34818))) & (instance_S_EnableSwitchOut)))));
+			loc = x164 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_34818))) & (((instance_DiagCode) = (0ud16_32768)) | ((!((instance_DiagCode) = (0ud16_32768))) & (instance_S_EnableSwitchOut))))))));
+			loc = x198 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((!((instance_DiagCode) = (0ud16_49169))) & (instance_S_EnableSwitchOut)))))))));
+			loc = x246 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_49169))) & ((!((instance_DiagCode) = (0ud16_49168))) & (instance_S_EnableSwitchOut)))))))))));
+			loc = x268 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_49169))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_S_EnableSwitchOut)) | ((!((instance_DiagCode) = (0ud16_49168))) & ((!((instance_DiagCode) = (0ud16_50192))) & (instance_S_EnableSwitchOut)))))))))))));
+			TRUE  : instance_S_EnableSwitchOut;
+		esac;
+		init(instance_SafetyDemand) := FALSE;
+		next(instance_SafetyDemand) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_SafetyDemand);
+			loc = x12 & (TRUE) : (!((instance_DiagCode) = (0ud16_32770))) & (instance_SafetyDemand);
+			loc = x82 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((!((instance_DiagCode) = (0ud16_32772))) & (instance_SafetyDemand)));
+			loc = x120 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32772))) & (((instance_DiagCode) = (0ud16_34818)) | ((!((instance_DiagCode) = (0ud16_34818))) & (instance_SafetyDemand))))));
+			loc = x164 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((!((instance_DiagCode) = (0ud16_32768))) & (instance_SafetyDemand)))))));
+			loc = x198 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((!((instance_DiagCode) = (0ud16_49169))) & (instance_SafetyDemand)))))))));
+			loc = x268 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_49169))) & ((!((instance_DiagCode) = (0ud16_49168))) & (instance_SafetyDemand)))))))))));
+			loc = x284 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_49169))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_49168))) & ((!((instance_DiagCode) = (0ud16_50192))) & (instance_SafetyDemand)))))))))))));
+			TRUE  : instance_SafetyDemand;
+		esac;
+		init(instance_ResetRequest) := FALSE;
+		next(instance_ResetRequest) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_ResetRequest);
+			loc = x12 & (TRUE) : (!((instance_DiagCode) = (0ud16_32770))) & (instance_ResetRequest);
+			loc = x82 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((!((instance_DiagCode) = (0ud16_32772))) & (instance_ResetRequest)));
+			loc = x164 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((!((instance_DiagCode) = (0ud16_34818))) & (instance_ResetRequest)))));
+			loc = x198 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((!((instance_DiagCode) = (0ud16_32768))) & (instance_ResetRequest)))))));
+			loc = x246 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((!((instance_DiagCode) = (0ud16_49169))) & (instance_ResetRequest)))))))));
+			loc = x268 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_49169))) & ((!((instance_DiagCode) = (0ud16_49168))) & (instance_ResetRequest)))))))))));
+			loc = x284 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_49169))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_ResetRequest)) | ((!((instance_DiagCode) = (0ud16_49168))) & ((((instance_DiagCode) = (0ud16_50192)) & (!(instance_Reset))) | ((!((instance_DiagCode) = (0ud16_50192))) & (instance_ResetRequest))))))))))))));
+			TRUE  : instance_ResetRequest;
+		esac;
+		init(instance_Error) := FALSE;
+		next(instance_Error) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_Error);
+			loc = x12 & (TRUE) : (!((instance_DiagCode) = (0ud16_32770))) & (instance_Error);
+			loc = x120 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((!((instance_DiagCode) = (0ud16_32772))) & (instance_Error)));
+			loc = x164 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((!((instance_DiagCode) = (0ud16_34818))) & (instance_Error)))));
+			loc = x198 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((!((instance_DiagCode) = (0ud16_32768))) & (instance_Error)))))));
+			loc = x246 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & (((instance_DiagCode) = (0ud16_49169)) | ((!((instance_DiagCode) = (0ud16_49169))) & (instance_Error))))))))));
+			loc = x268 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_49169))) & (((instance_DiagCode) = (0ud16_49168)) | ((!((instance_DiagCode) = (0ud16_49168))) & (instance_Error))))))))))));
+			loc = x284 & (TRUE) : (((instance_DiagCode) = (0ud16_32770)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32770))) & ((((instance_DiagCode) = (0ud16_32772)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32772))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_49169)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_49169))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_49168))) & (((instance_DiagCode) = (0ud16_50192)) | ((!((instance_DiagCode) = (0ud16_50192))) & (instance_Error))))))))))))));
+			TRUE  : instance_Error;
+		esac;
+		init(instance_DiagCode) := 0ud16_0;
+		next(instance_DiagCode) := case
+			loc = verificationLoop_VerificationLoop_init & (!(instance_Activate)) : 0ud16_0;
+			loc = verificationLoop_VerificationLoop_init & ((!(!(instance_Activate))) & (!(instance_S_SafetyActive))) : 0ud16_32770;
+			loc = verificationLoop_VerificationLoop_init & (((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & ((instance_DiagCode) = (0ud16_0))) : 0ud16_32770;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32770))) & (instance_S_SafetyActive)) : 0ud16_32772;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & ((instance_DiagCode) = (0ud16_32772))) & (instance_S_EnableIn)) : 0ud16_49168;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & ((instance_DiagCode) = (0ud16_32772))) & (!(instance_S_EnableIn))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & ((instance_DiagCode) = (0ud16_34818))) & (instance_S_EnableIn)) : 0ud16_32768;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_32768))) & (!(instance_S_EnableIn))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_49168))) & ((instance_Reset) & (instance_Reset_Before))) : 0ud16_49169;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_49168))) & ((!((instance_Reset) & (instance_Reset_Before))) & (((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_49168))) & (((!((instance_Reset) & (instance_Reset_Before))) & (!(((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) & (!(instance_S_EnableIn)))) : 0ud16_50192;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & ((instance_DiagCode) = (0ud16_50192))) & ((instance_Reset) & (instance_Reset_Before))) : 0ud16_49169;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & ((instance_DiagCode) = (0ud16_50192))) & ((!((instance_Reset) & (instance_Reset_Before))) & (((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & ((instance_DiagCode) = (0ud16_50192))) & (((!((instance_Reset) & (instance_Reset_Before))) & (!(((!(instance_S_EnableIn)) & (instance_Reset)) & (!(instance_Reset_Before))))) & (instance_S_EnableIn))) : 0ud16_49168;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & (!((instance_DiagCode) = (0ud16_50192)))) & ((instance_DiagCode) = (0ud16_49169))) & (!(instance_Reset))) & (instance_S_EnableIn)) : 0ud16_49168;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!(!(instance_S_SafetyActive)))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32770)))) & (!((instance_DiagCode) = (0ud16_32772)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_49168)))) & (!((instance_DiagCode) = (0ud16_50192)))) & ((instance_DiagCode) = (0ud16_49169))) & (!(instance_Reset))) & (!(instance_S_EnableIn))) : 0ud16_50192;
+			TRUE  : instance_DiagCode;
+		esac;
+		init(instance_Reset_Before) := FALSE;
+		next(instance_Reset_Before) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_Reset_Before);
+			loc = x284 & (TRUE) : instance_Reset;
+			TRUE  : instance_Reset_Before;
+		esac;
+		init(EoC) := FALSE;
+		next(EoC) := case
+			loc = verificationLoop_VerificationLoop_l124 & (TRUE) : TRUE;
+			loc = prepare_EoC & (TRUE) : FALSE;
+			TRUE  : EoC;
+		esac;
+		init(BoC) := FALSE;
+		next(BoC) := case
+			loc = loop_start & (TRUE) : TRUE;
+			loc = prepare_BoC & (TRUE) : FALSE;
+			TRUE  : BoC;
+		esac;
+
+-- Requirement
+-- first state only
+-- LTLSPEC G( (!EoC) | (EoC & ((((!(instance_Activate) & !(instance_S_SafetyActive)) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((!(instance_Ready) & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_0) & !(instance_Reset_Before))))) )
+-- full spec
+LTLSPEC G(
+  (!EoC) | (EoC & ((((!(instance_Activate) & !(instance_S_SafetyActive)) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((!(instance_Ready) & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_0) & !(instance_Reset_Before))
+  & X((!EoC) U (
+    EoC & ((((instance_Activate & !(instance_S_SafetyActive)) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32770) & !(instance_Reset_Before))
+    & X((!EoC) U (
+      EoC & ((((instance_Activate & !(instance_S_SafetyActive)) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32770) & !(instance_Reset_Before))
+      & X((!EoC) U (
+        EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32772) & !(instance_Reset_Before))
+        & X((!EoC) U (
+          EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & instance_SafetyDemand) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_34818) & !(instance_Reset_Before))
+          & X((!EoC) U (
+            EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & instance_SafetyDemand) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_34818) & !(instance_Reset_Before))
+            & X((!EoC) U (
+              EoC & ((((instance_Activate & instance_S_SafetyActive) & instance_S_EnableIn) & !(instance_Reset)) -> (((((((instance_Ready & instance_S_EnableSwitchOut) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32768) & !(instance_Reset_Before))
+              & X((!EoC) U (
+                EoC & ((((instance_Activate & instance_S_SafetyActive) & instance_S_EnableIn) & !(instance_Reset)) -> (((((((instance_Ready & instance_S_EnableSwitchOut) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32768) & !(instance_Reset_Before))
+                & X((!EoC) U (
+                  EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & instance_SafetyDemand) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_34818) & !(instance_Reset_Before))
+                  & X((!EoC) U (
+                    EoC & ((((instance_Activate & !(instance_S_SafetyActive)) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32770) & !(instance_Reset_Before))
+                    & X((!EoC) U (
+                      EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32772) & !(instance_Reset_Before))
+                      & X((!EoC) U (
+                        EoC & ((((instance_Activate & instance_S_SafetyActive) & instance_S_EnableIn) & instance_Reset) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & instance_Error) & instance_DiagCode = 0ud16_49168) & instance_Reset_Before)
+                        & X((!EoC) U (
+                          EoC & ((((instance_Activate & instance_S_SafetyActive) & instance_S_EnableIn) & instance_Reset) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & instance_Error) & instance_DiagCode = 0ud16_49169) & instance_Reset_Before)
+                          & X((!EoC) U (
+                            EoC & ((((instance_Activate & instance_S_SafetyActive) & instance_S_EnableIn) & instance_Reset) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & instance_Error) & instance_DiagCode = 0ud16_49169) & instance_Reset_Before)
+                            & X((!EoC) U (
+                              EoC & ((((instance_Activate & instance_S_SafetyActive) & instance_S_EnableIn) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & instance_Error) & instance_DiagCode = 0ud16_49168) & !(instance_Reset_Before))
+                              & X((!EoC) U (
+                                EoC & ((((instance_Activate & instance_S_SafetyActive) & instance_S_EnableIn) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & instance_Error) & instance_DiagCode = 0ud16_49168) & !(instance_Reset_Before))
+                                & X((!EoC) U (
+                                  EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & instance_ResetRequest) & instance_Error) & instance_DiagCode = 0ud16_50192) & !(instance_Reset_Before))
+                                  & X((!EoC) U (
+                                    EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & instance_ResetRequest) & instance_Error) & instance_DiagCode = 0ud16_50192) & !(instance_Reset_Before))
+                                    & X((!EoC) U (
+                                      EoC & ((((instance_Activate & instance_S_SafetyActive) & instance_S_EnableIn) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & instance_Error) & instance_DiagCode = 0ud16_49168) & !(instance_Reset_Before))
+                                      & X((!EoC) U (
+                                        EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & instance_Reset) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & instance_SafetyDemand) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_34818) & instance_Reset_Before)
+                                        & X((!EoC) U (
+                                          EoC & ((((instance_Activate & !(instance_S_SafetyActive)) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32770) & !(instance_Reset_Before))
+                                          & X((!EoC) U (
+                                            EoC & ((((instance_Activate & !(instance_S_SafetyActive)) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32770) & !(instance_Reset_Before))
+                                            & X((!EoC) U (
+                                              EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32772) & !(instance_Reset_Before))
+                                              & X((!EoC) U (
+                                                EoC & ((((instance_Activate & instance_S_SafetyActive) & instance_S_EnableIn) & instance_Reset) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & instance_Error) & instance_DiagCode = 0ud16_49168) & instance_Reset_Before)
+                                                & X((!EoC) U (
+                                                  EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & instance_Reset) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & instance_Error) & instance_DiagCode = 0ud16_49169) & instance_Reset_Before)
+                                                  & X((!EoC) U (
+                                                    EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & !(instance_Reset)) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & instance_ResetRequest) & instance_Error) & instance_DiagCode = 0ud16_50192) & !(instance_Reset_Before))
+                                                    & X((!EoC) U (
+                                                      EoC & ((((instance_Activate & instance_S_SafetyActive) & !(instance_S_EnableIn)) & instance_Reset) -> (((((((instance_Ready & !(instance_S_EnableSwitchOut)) & instance_SafetyDemand) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_34818) & instance_Reset_Before)
+                                                      & X((!EoC) U (
+                                                        EoC & ((((instance_Activate & !(instance_S_SafetyActive)) & !(instance_S_EnableIn)) & !(instance_Reset)) -> ((((((instance_Ready & !(instance_S_EnableSwitchOut)) & !(instance_SafetyDemand)) & !(instance_ResetRequest)) & !(instance_Error)) & instance_DiagCode = 0ud16_32770) & !(instance_Reset_Before)))
+                                                      ))))
+                                                    ))))
+                                                  ))))
+                                                ))))
+                                              ))))
+                                            ))))
+                                          ))))
+                                        ))))
+                                      ))))
+                                    ))))
+                                  ))))
+                                ))))
+                              ))))
+                            ))))
+                          ))))
+                        ))))
+                      ))))
+                    ))))
+                  ))))
+                ))))
+              ))))
+            ))))
+          ))))
+        ))))
+      ))))
+    ))))
+  )))))
+);

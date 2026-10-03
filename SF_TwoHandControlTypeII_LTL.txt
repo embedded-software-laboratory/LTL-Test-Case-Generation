@@ -1,4 +1,5 @@
-#SF_TwoHandControlTypeII_LTL.txt
+#C:\Users\jb\Desktop\promo\testgen\testgen\plcopen-fbs\SF_TwoHandControlTypeII_LTL.txt
+#/Users/jb/promo/testgen/testgen/plcopen-fbs/SF_TwoHandControlTypeII_LTL.txt
 
 #testname=SF_TwoHandControlTypeII_Test
 #testedFbName=SF_TwoHandControlTypeII_BranchCounters

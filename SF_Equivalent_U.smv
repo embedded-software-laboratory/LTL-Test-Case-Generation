@@ -1,0 +1,455 @@
+-- Model
+MODULE main
+	VAR
+		loc : {init_pv, end, loop_start, prepare_BoC, l_main_call, prepare_EoC, verificationLoop_VerificationLoop_init, verificationLoop_VerificationLoop_l24, verificationLoop_VerificationLoop_l38, verificationLoop_VerificationLoop_l50, verificationLoop_VerificationLoop_l62, verificationLoop_VerificationLoop_l71, verificationLoop_VerificationLoop_l72, verificationLoop_VerificationLoop_l78, verificationLoop_VerificationLoop_l79, verificationLoop_VerificationLoop_l85, verificationLoop_VerificationLoop_l86, verificationLoop_VerificationLoop_l92, verificationLoop_VerificationLoop_l142, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l14, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l19, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l23, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l24, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l25, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init1, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l141, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l191, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l231, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l241, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l252, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l255, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l257, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1414, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1914, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2314, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2414, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2514, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1415, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1915, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2315, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2415, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2515, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1416, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1916, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2316, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2416, verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2516, x2, x208, x212, x218, x222, x226, x268, x312, x346, x376, x400, x420, x436, x448};
+		__GLOBAL_TIME : signed word[32];
+		instance_Activate : boolean; -- frozen
+		instance_S_ChannelA : boolean; -- frozen
+		instance_S_ChannelB : boolean; -- frozen
+		instance_DiscrepancyTime : signed word[32]; -- frozen
+		instance_Ready : boolean; -- frozen
+		instance_S_EquivalentOut : boolean; -- frozen
+		instance_SafetyDemand : boolean; -- frozen
+		instance_Error : boolean; -- frozen
+		instance_DiagCode : unsigned word[16]; -- frozen
+		instance_T_1_PT : signed word[32];
+		instance_T_1_IN : boolean;
+		instance_T_1_Q : boolean; -- frozen
+		instance_T_1_running : boolean;
+		instance_T_1_start : signed word[32];
+		T_CYCLE : signed word[32];
+		EoC : boolean; -- frozen
+		BoC : boolean; -- frozen
+		-- Random vars for nondeterministic INTs
+		__random_T_CYCLE : signed word[32];
+		__random_instance_DiscrepancyTime : signed word[32];
+	
+	ASSIGN
+		-- CFA structure (loc)
+		init(loc) := init_pv;
+		next(loc) := case
+			loc = init_pv & (TRUE) : loop_start;
+			loc = loop_start & (TRUE) : prepare_BoC;
+			loc = prepare_BoC & (TRUE) : l_main_call;
+			loc = verificationLoop_VerificationLoop_l142 & (TRUE) : prepare_EoC;
+			loc = prepare_EoC & (TRUE) : loop_start;
+			loc = verificationLoop_VerificationLoop_init & (!(instance_Activate)) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init;
+			loc = verificationLoop_VerificationLoop_init & (!(!(instance_Activate))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init1;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((instance_DiagCode) = (0ud16_0)) : x2;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((!((instance_DiagCode) = (0ud16_0))) & ((instance_DiagCode) = (0ud16_32768))) & ((instance_S_ChannelA)  xor  (instance_S_ChannelB))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l252;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((!((instance_DiagCode) = (0ud16_0))) & ((instance_DiagCode) = (0ud16_32768))) & ((!((instance_S_ChannelA)  xor  (instance_S_ChannelB))) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : verificationLoop_VerificationLoop_l24;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((!((instance_DiagCode) = (0ud16_0))) & ((instance_DiagCode) = (0ud16_32768))) & ((!((instance_S_ChannelA)  xor  (instance_S_ChannelB))) & (!((!((instance_S_ChannelA)  xor  (instance_S_ChannelB))) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))))) : verificationLoop_VerificationLoop_l24;
+			loc = verificationLoop_VerificationLoop_l24 & (TRUE) : x2;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_34817))) & ((instance_S_ChannelA) & (!(instance_S_ChannelB)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l255;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_34817))) & ((!((instance_S_ChannelA) & (!(instance_S_ChannelB)))) & ((instance_S_ChannelB) & (!(instance_S_ChannelA))))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l257;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_34817))) & (((!((instance_S_ChannelA) & (!(instance_S_ChannelB)))) & (!((instance_S_ChannelB) & (!(instance_S_ChannelA))))) & ((instance_S_ChannelA) & (instance_S_ChannelB)))) : verificationLoop_VerificationLoop_l38;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_34817))) & ((!((instance_S_ChannelA) & (!(instance_S_ChannelB)))) & ((!((!((instance_S_ChannelA) & (!(instance_S_ChannelB)))) & ((instance_S_ChannelB) & (!(instance_S_ChannelA))))) & (!(((!((instance_S_ChannelA) & (!(instance_S_ChannelB)))) & (!((instance_S_ChannelB) & (!(instance_S_ChannelA))))) & ((instance_S_ChannelA) & (instance_S_ChannelB))))))) : verificationLoop_VerificationLoop_l38;
+			loc = verificationLoop_VerificationLoop_l38 & (TRUE) : x2;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & (instance_T_1_Q)) : verificationLoop_VerificationLoop_l50;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelA)))) : verificationLoop_VerificationLoop_l50;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelA)))) & (instance_S_ChannelB))) : verificationLoop_VerificationLoop_l50;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & ((!(instance_T_1_Q)) & ((!((!(instance_T_1_Q)) & (!(instance_S_ChannelA)))) & (!(((!(instance_T_1_Q)) & (!(!(instance_S_ChannelA)))) & (instance_S_ChannelB)))))) : verificationLoop_VerificationLoop_l50;
+			loc = verificationLoop_VerificationLoop_l50 & (TRUE) : x2;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (instance_T_1_Q)) : verificationLoop_VerificationLoop_l62;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelB)))) : verificationLoop_VerificationLoop_l62;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelB)))) & (instance_S_ChannelA))) : verificationLoop_VerificationLoop_l62;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & ((!(instance_T_1_Q)) & ((!((!(instance_T_1_Q)) & (!(instance_S_ChannelB)))) & (!(((!(instance_T_1_Q)) & (!(!(instance_S_ChannelB)))) & (instance_S_ChannelA)))))) : verificationLoop_VerificationLoop_l62;
+			loc = verificationLoop_VerificationLoop_l62 & (TRUE) : x2;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & (instance_T_1_Q)) : verificationLoop_VerificationLoop_l71;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & ((!(instance_T_1_Q)) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : verificationLoop_VerificationLoop_l71;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & ((!(instance_T_1_Q)) & (!((!(instance_T_1_Q)) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))))) : verificationLoop_VerificationLoop_l71;
+			loc = verificationLoop_VerificationLoop_l71 & (TRUE) : x2;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & ((instance_DiagCode) = (0ud16_49168))) : x218;
+			loc = verificationLoop_VerificationLoop_l72 & (!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) : verificationLoop_VerificationLoop_l78;
+			loc = verificationLoop_VerificationLoop_l78 & (TRUE) : x2;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_49168)))) & ((instance_DiagCode) = (0ud16_49184))) : x222;
+			loc = verificationLoop_VerificationLoop_l79 & (!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) : verificationLoop_VerificationLoop_l85;
+			loc = verificationLoop_VerificationLoop_l85 & (TRUE) : x2;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_49168)))) & (!((instance_DiagCode) = (0ud16_49184)))) & ((instance_DiagCode) = (0ud16_49200))) : x226;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_49168)))) & (!((instance_DiagCode) = (0ud16_49184)))) & (!((instance_DiagCode) = (0ud16_49200)))) : x2;
+			loc = verificationLoop_VerificationLoop_l86 & (!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) : verificationLoop_VerificationLoop_l92;
+			loc = verificationLoop_VerificationLoop_l92 & (TRUE) : x2;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init & ((instance_T_1_IN) = (FALSE)) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l25;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l24;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l14;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l14 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_T_1_PT))) >= (0sd32_0))) & (!(instance_T_1_Q))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l19;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l14 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_T_1_PT))) >= (0sd32_0))) & (!(!(instance_T_1_Q)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l19;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l14 & (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_T_1_PT))) >= (0sd32_0)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l23;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l19 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l23;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l23 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l24;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l24 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l25;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l25 & (TRUE) : verificationLoop_VerificationLoop_l142;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init1 & ((instance_T_1_IN) = (FALSE)) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init1 & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l241;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init1 & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l141;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l141 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (!(instance_T_1_Q))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l191;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l141 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (!(!(instance_T_1_Q)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l191;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l141 & (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l231;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l191 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l231;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l231 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l241;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l241 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l252 & (TRUE) : verificationLoop_VerificationLoop_l24;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l255 & (TRUE) : verificationLoop_VerificationLoop_l38;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l257 & (TRUE) : verificationLoop_VerificationLoop_l38;
+			loc = verificationLoop_VerificationLoop_l72 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((instance_T_1_IN) = (FALSE))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2514;
+			loc = verificationLoop_VerificationLoop_l72 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2414;
+			loc = verificationLoop_VerificationLoop_l72 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE))))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1414;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1414 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (!(instance_T_1_Q))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1914;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1414 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (!(!(instance_T_1_Q)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1914;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1414 & (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2314;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1914 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2314;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2314 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2414;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2414 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2514;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2514 & (TRUE) : verificationLoop_VerificationLoop_l78;
+			loc = verificationLoop_VerificationLoop_l79 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((instance_T_1_IN) = (FALSE))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2515;
+			loc = verificationLoop_VerificationLoop_l79 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2415;
+			loc = verificationLoop_VerificationLoop_l79 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE))))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1415;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1415 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (!(instance_T_1_Q))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1915;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1415 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (!(!(instance_T_1_Q)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1915;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1415 & (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2315;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1915 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2315;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2315 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2415;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2415 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2515;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2515 & (TRUE) : verificationLoop_VerificationLoop_l85;
+			loc = verificationLoop_VerificationLoop_l86 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((instance_T_1_IN) = (FALSE))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2516;
+			loc = verificationLoop_VerificationLoop_l86 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2416;
+			loc = verificationLoop_VerificationLoop_l86 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE))))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1416;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1416 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (!(instance_T_1_Q))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1916;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1416 & ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (!(!(instance_T_1_Q)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1916;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1416 & (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0)))) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2316;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l1916 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2316;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2316 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2416;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2416 & (TRUE) : verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2516;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2516 & (TRUE) : verificationLoop_VerificationLoop_l92;
+			loc = l_main_call & (TRUE) : x208;
+			loc = x2 & (TRUE) : x212;
+			loc = x208 & (TRUE) : verificationLoop_VerificationLoop_init;
+			loc = x212 & (TRUE) : x268;
+			loc = x218 & (TRUE) : verificationLoop_VerificationLoop_l72;
+			loc = x222 & (TRUE) : verificationLoop_VerificationLoop_l79;
+			loc = x226 & (TRUE) : verificationLoop_VerificationLoop_l86;
+			loc = x268 & (TRUE) : x312;
+			loc = x312 & (TRUE) : x346;
+			loc = x346 & (TRUE) : x376;
+			loc = x376 & (TRUE) : x400;
+			loc = x400 & (TRUE) : x420;
+			loc = x420 & (TRUE) : x436;
+			loc = x436 & (TRUE) : x448;
+			loc = x448 & (TRUE) : verificationLoop_VerificationLoop_l142;
+			TRUE: loc;
+		esac;
+		
+		init(__GLOBAL_TIME) := 0sd32_0;
+		next(__GLOBAL_TIME) := case
+			loc = verificationLoop_VerificationLoop_l142 & (TRUE) : (__GLOBAL_TIME) + (T_CYCLE);
+			TRUE  : __GLOBAL_TIME;
+		esac;
+		init(instance_Activate) := FALSE;
+		next(instance_Activate) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_Activate;
+		esac;
+		init(instance_S_ChannelA) := FALSE;
+		next(instance_S_ChannelA) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_S_ChannelA;
+		esac;
+		init(instance_S_ChannelB) := FALSE;
+		next(instance_S_ChannelB) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_S_ChannelB;
+		esac;
+		init(instance_DiscrepancyTime) := 0sd32_100;
+		next(instance_DiscrepancyTime) := case
+			loc = loop_start & (TRUE) : __random_instance_DiscrepancyTime; -- Nondeterministic
+			TRUE  : instance_DiscrepancyTime;
+		esac;
+		init(instance_Ready) := FALSE;
+		next(instance_Ready) := case
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l25 & (TRUE) : FALSE;
+			loc = x2 & (TRUE) : ((instance_DiagCode) = (0ud16_32768)) | ((!((instance_DiagCode) = (0ud16_32768))) & (instance_Ready));
+			loc = x212 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & (((instance_DiagCode) = (0ud16_34817)) | ((!((instance_DiagCode) = (0ud16_34817))) & (instance_Ready))));
+			loc = x268 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34817))) & (((instance_DiagCode) = (0ud16_34818)) | ((!((instance_DiagCode) = (0ud16_34818))) & (instance_Ready))))));
+			loc = x312 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34818))) & (((instance_DiagCode) = (0ud16_34820)) | ((!((instance_DiagCode) = (0ud16_34820))) & (instance_Ready))))))));
+			loc = x346 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34820))) & (((instance_DiagCode) = (0ud16_34822)) | ((!((instance_DiagCode) = (0ud16_34822))) & (instance_Ready))))))))));
+			loc = x400 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34822))) & (((instance_DiagCode) = (0ud16_49168)) | ((!((instance_DiagCode) = (0ud16_49168))) & (instance_Ready))))))))))));
+			loc = x420 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_49168))) & (((instance_DiagCode) = (0ud16_49184)) | ((!((instance_DiagCode) = (0ud16_49184))) & (instance_Ready))))))))))))));
+			loc = x436 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_49168))) & ((((instance_DiagCode) = (0ud16_49184)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_49184))) & (((instance_DiagCode) = (0ud16_49200)) | ((!((instance_DiagCode) = (0ud16_49200))) & (instance_Ready))))))))))))))));
+			TRUE  : instance_Ready;
+		esac;
+		init(instance_S_EquivalentOut) := FALSE;
+		next(instance_S_EquivalentOut) := case
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l25 & (TRUE) : FALSE;
+			loc = x2 & (TRUE) : ((instance_DiagCode) = (0ud16_32768)) | ((!((instance_DiagCode) = (0ud16_32768))) & (instance_S_EquivalentOut));
+			loc = x212 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((!((instance_DiagCode) = (0ud16_34817))) & (instance_S_EquivalentOut)));
+			loc = x312 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((!((instance_DiagCode) = (0ud16_34818))) & (instance_S_EquivalentOut)))));
+			loc = x346 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((!((instance_DiagCode) = (0ud16_34820))) & (instance_S_EquivalentOut)))))));
+			loc = x376 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((!((instance_DiagCode) = (0ud16_34822))) & (instance_S_EquivalentOut)))))))));
+			loc = x420 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((!((instance_DiagCode) = (0ud16_49168))) & (instance_S_EquivalentOut)))))))))));
+			loc = x436 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_49168))) & ((!((instance_DiagCode) = (0ud16_49184))) & (instance_S_EquivalentOut)))))))))))));
+			loc = x448 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_49168))) & ((((instance_DiagCode) = (0ud16_49184)) & (instance_S_EquivalentOut)) | ((!((instance_DiagCode) = (0ud16_49184))) & ((!((instance_DiagCode) = (0ud16_49200))) & (instance_S_EquivalentOut)))))))))))))));
+			TRUE  : instance_S_EquivalentOut;
+		esac;
+		init(instance_SafetyDemand) := FALSE;
+		next(instance_SafetyDemand) := case
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l25 & (TRUE) : FALSE;
+			loc = x2 & (TRUE) : (!((instance_DiagCode) = (0ud16_32768))) & (instance_SafetyDemand);
+			loc = x212 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & (((instance_DiagCode) = (0ud16_34817)) | ((!((instance_DiagCode) = (0ud16_34817))) & (instance_SafetyDemand))));
+			loc = x268 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34817))) & (((instance_DiagCode) = (0ud16_34818)) | ((!((instance_DiagCode) = (0ud16_34818))) & (instance_SafetyDemand))))));
+			loc = x312 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34818))) & (((instance_DiagCode) = (0ud16_34820)) | ((!((instance_DiagCode) = (0ud16_34820))) & (instance_SafetyDemand))))))));
+			loc = x376 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34820))) & (((instance_DiagCode) = (0ud16_34822)) | ((!((instance_DiagCode) = (0ud16_34822))) & (instance_SafetyDemand))))))))));
+			loc = x400 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((!((instance_DiagCode) = (0ud16_49168))) & (instance_SafetyDemand)))))))))));
+			loc = x420 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_49168))) & ((!((instance_DiagCode) = (0ud16_49184))) & (instance_SafetyDemand)))))))))))));
+			loc = x448 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_49168))) & ((((instance_DiagCode) = (0ud16_49184)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_49184))) & ((!((instance_DiagCode) = (0ud16_49200))) & (instance_SafetyDemand)))))))))))))));
+			TRUE  : instance_SafetyDemand;
+		esac;
+		init(instance_Error) := FALSE;
+		next(instance_Error) := case
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l25 & (TRUE) : FALSE;
+			loc = x2 & (TRUE) : (!((instance_DiagCode) = (0ud16_32768))) & (instance_Error);
+			loc = x212 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((!((instance_DiagCode) = (0ud16_34817))) & (instance_Error)));
+			loc = x268 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((!((instance_DiagCode) = (0ud16_34818))) & (instance_Error)))));
+			loc = x346 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((!((instance_DiagCode) = (0ud16_34820))) & (instance_Error)))))));
+			loc = x376 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((!((instance_DiagCode) = (0ud16_34822))) & (instance_Error)))))))));
+			loc = x400 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34822))) & (((instance_DiagCode) = (0ud16_49168)) | ((!((instance_DiagCode) = (0ud16_49168))) & (instance_Error))))))))))));
+			loc = x436 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_49168))) & (((instance_DiagCode) = (0ud16_49184)) | ((!((instance_DiagCode) = (0ud16_49184))) & (instance_Error))))))))))))));
+			loc = x448 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_34817)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34817))) & ((((instance_DiagCode) = (0ud16_34818)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34818))) & ((((instance_DiagCode) = (0ud16_34820)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34820))) & ((((instance_DiagCode) = (0ud16_34822)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_34822))) & ((((instance_DiagCode) = (0ud16_49168)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_49168))) & ((((instance_DiagCode) = (0ud16_49184)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_49184))) & (((instance_DiagCode) = (0ud16_49200)) | ((!((instance_DiagCode) = (0ud16_49200))) & (instance_Error))))))))))))))));
+			TRUE  : instance_Error;
+		esac;
+		init(instance_DiagCode) := 0ud16_0;
+		next(instance_DiagCode) := case
+			loc = verificationLoop_VerificationLoop_init & (!(instance_Activate)) : 0ud16_0;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((instance_DiagCode) = (0ud16_0)) : 0ud16_34817;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((!((instance_DiagCode) = (0ud16_0))) & ((instance_DiagCode) = (0ud16_32768))) & ((instance_S_ChannelA)  xor  (instance_S_ChannelB))) : 0ud16_34822;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((!((instance_DiagCode) = (0ud16_0))) & ((instance_DiagCode) = (0ud16_32768))) & ((!((instance_S_ChannelA)  xor  (instance_S_ChannelB))) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : 0ud16_34817;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_34817))) & ((instance_S_ChannelA) & (!(instance_S_ChannelB)))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_34817))) & ((!((instance_S_ChannelA) & (!(instance_S_ChannelB)))) & ((instance_S_ChannelB) & (!(instance_S_ChannelA))))) : 0ud16_34820;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_34817))) & (((!((instance_S_ChannelA) & (!(instance_S_ChannelB)))) & (!((instance_S_ChannelB) & (!(instance_S_ChannelA))))) & ((instance_S_ChannelA) & (instance_S_ChannelB)))) : 0ud16_32768;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & (instance_T_1_Q)) : 0ud16_49168;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelA)))) : 0ud16_34817;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelA)))) & (instance_S_ChannelB))) : 0ud16_32768;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (instance_T_1_Q)) : 0ud16_49184;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelB)))) : 0ud16_34817;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelB)))) & (instance_S_ChannelA))) : 0ud16_32768;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & (instance_T_1_Q)) : 0ud16_49200;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & ((!(instance_T_1_Q)) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : 0ud16_34817;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2514 & (TRUE) : 0ud16_34817;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2515 & (TRUE) : 0ud16_34817;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l2516 & (TRUE) : 0ud16_34817;
+			TRUE  : instance_DiagCode;
+		esac;
+		init(instance_T_1_PT) := 0sd32_0;
+		next(instance_T_1_PT) := case
+			loc = verificationLoop_VerificationLoop_init & (!(!(instance_Activate))) : instance_DiscrepancyTime;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l252 & (TRUE) : instance_DiscrepancyTime;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l255 & (TRUE) : instance_DiscrepancyTime;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l257 & (TRUE) : instance_DiscrepancyTime;
+			TRUE  : instance_T_1_PT;
+		esac;
+		init(instance_T_1_IN) := FALSE;
+		next(instance_T_1_IN) := case
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((!((instance_DiagCode) = (0ud16_0))) & ((instance_DiagCode) = (0ud16_32768))) & ((!((instance_S_ChannelA)  xor  (instance_S_ChannelB))) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelA)))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelA)))) & (instance_S_ChannelB))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelB)))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelB)))) & (instance_S_ChannelA))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & ((!(instance_T_1_Q)) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & ((instance_DiagCode) = (0ud16_49168))) : (!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) & (instance_T_1_IN);
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_49168)))) & ((instance_DiagCode) = (0ud16_49184))) : (!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) & (instance_T_1_IN);
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_49168)))) & (!((instance_DiagCode) = (0ud16_49184)))) & ((instance_DiagCode) = (0ud16_49200))) : (!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) & (instance_T_1_IN);
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l252 & (TRUE) : TRUE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l255 & (TRUE) : TRUE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l257 & (TRUE) : TRUE;
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_T_1_IN);
+			TRUE  : instance_T_1_IN;
+		esac;
+		init(instance_T_1_Q) := FALSE;
+		next(instance_T_1_Q) := case
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((!((instance_DiagCode) = (0ud16_0))) & ((instance_DiagCode) = (0ud16_32768))) & ((instance_S_ChannelA)  xor  (instance_S_ChannelB))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((!((instance_DiagCode) = (0ud16_0))) & ((instance_DiagCode) = (0ud16_32768))) & ((!((instance_S_ChannelA)  xor  (instance_S_ChannelB))) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_34817))) & ((instance_S_ChannelA) & (!(instance_S_ChannelB)))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & ((instance_DiagCode) = (0ud16_34817))) & ((!((instance_S_ChannelA) & (!(instance_S_ChannelB)))) & ((instance_S_ChannelB) & (!(instance_S_ChannelA))))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelA)))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelA)))) & (instance_S_ChannelB))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelB)))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelB)))) & (instance_S_ChannelA))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & ((!(instance_T_1_Q)) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE))) : ((instance_T_1_PT) = (0sd32_0)) | ((!((instance_T_1_PT) = (0sd32_0))) & (instance_T_1_Q));
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE)))) : ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_T_1_PT))) >= (0sd32_0))) & (instance_T_1_Q)) | (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_T_1_PT))) >= (0sd32_0))));
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init1 & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE))) : ((instance_DiscrepancyTime) = (0sd32_0)) | ((!((instance_DiscrepancyTime) = (0sd32_0))) & (instance_T_1_Q));
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init1 & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE)))) : ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (instance_T_1_Q)) | (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))));
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l252 & (TRUE) : ((instance_DiscrepancyTime) = (0sd32_0)) | ((!((instance_DiscrepancyTime) = (0sd32_0))) & (instance_T_1_Q));
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l255 & (TRUE) : ((instance_DiscrepancyTime) = (0sd32_0)) | ((!((instance_DiscrepancyTime) = (0sd32_0))) & (instance_T_1_Q));
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l257 & (TRUE) : ((instance_DiscrepancyTime) = (0sd32_0)) | ((!((instance_DiscrepancyTime) = (0sd32_0))) & (instance_T_1_Q));
+			loc = verificationLoop_VerificationLoop_l72 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : ((instance_DiscrepancyTime) = (0sd32_0)) | ((!((instance_DiscrepancyTime) = (0sd32_0))) & (instance_T_1_Q));
+			loc = verificationLoop_VerificationLoop_l72 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE))))) : ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (instance_T_1_Q)) | (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))));
+			loc = verificationLoop_VerificationLoop_l79 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : ((instance_DiscrepancyTime) = (0sd32_0)) | ((!((instance_DiscrepancyTime) = (0sd32_0))) & (instance_T_1_Q));
+			loc = verificationLoop_VerificationLoop_l79 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE))))) : ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (instance_T_1_Q)) | (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))));
+			loc = verificationLoop_VerificationLoop_l86 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : ((instance_DiscrepancyTime) = (0sd32_0)) | ((!((instance_DiscrepancyTime) = (0sd32_0))) & (instance_T_1_Q));
+			loc = verificationLoop_VerificationLoop_l86 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (!((instance_T_1_running) = (FALSE))))) : ((!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))) & (instance_T_1_Q)) | (!(!(((__GLOBAL_TIME) - ((instance_T_1_start) + (instance_DiscrepancyTime))) >= (0sd32_0))));
+			loc = x208 & (TRUE) : ((!(instance_Activate)) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_Q))) | ((!(!(instance_Activate))) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_Q)));
+			loc = x218 & (TRUE) : (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_Q))) | ((!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) & (instance_T_1_Q));
+			loc = x222 & (TRUE) : (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_Q))) | ((!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) & (instance_T_1_Q));
+			loc = x226 & (TRUE) : (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_Q))) | ((!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) & (instance_T_1_Q));
+			TRUE  : instance_T_1_Q;
+		esac;
+		init(instance_T_1_running) := FALSE;
+		next(instance_T_1_running) := case
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((!((instance_DiagCode) = (0ud16_0))) & ((instance_DiagCode) = (0ud16_32768))) & ((!((instance_S_ChannelA)  xor  (instance_S_ChannelB))) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelA)))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & ((instance_DiagCode) = (0ud16_34818))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelA)))) & (instance_S_ChannelB))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & ((!(instance_T_1_Q)) & (!(instance_S_ChannelB)))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & ((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (((!(instance_T_1_Q)) & (!(!(instance_S_ChannelB)))) & (instance_S_ChannelA))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l251 & (((((((!((instance_DiagCode) = (0ud16_0))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!((instance_DiagCode) = (0ud16_34817)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & ((!(instance_T_1_Q)) & ((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))))) : FALSE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE))) : TRUE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init1 & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE))) : TRUE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l252 & (TRUE) : TRUE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l255 & (TRUE) : TRUE;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l257 & (TRUE) : TRUE;
+			loc = verificationLoop_VerificationLoop_l72 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : TRUE;
+			loc = verificationLoop_VerificationLoop_l79 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : TRUE;
+			loc = verificationLoop_VerificationLoop_l86 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : TRUE;
+			loc = x208 & (TRUE) : ((!(instance_Activate)) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_running))) | ((!(!(instance_Activate))) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_running)));
+			loc = x218 & (TRUE) : (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_running))) | ((!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) & (instance_T_1_running));
+			loc = x222 & (TRUE) : (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_running))) | ((!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) & (instance_T_1_running));
+			loc = x226 & (TRUE) : (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & (instance_T_1_running))) | ((!((!(instance_S_ChannelA)) & (!(instance_S_ChannelB)))) & (instance_T_1_running));
+			TRUE  : instance_T_1_running;
+		esac;
+		init(instance_T_1_start) := 0sd32_0;
+		next(instance_T_1_start) := case
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE))) : __GLOBAL_TIME;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_init1 & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE))) : __GLOBAL_TIME;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l252 & (TRUE) : __GLOBAL_TIME;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l255 & (TRUE) : __GLOBAL_TIME;
+			loc = verificationLoop_VerificationLoop_instance_SF_Equivalent_U_l257 & (TRUE) : __GLOBAL_TIME;
+			loc = verificationLoop_VerificationLoop_l72 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : __GLOBAL_TIME;
+			loc = verificationLoop_VerificationLoop_l79 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : __GLOBAL_TIME;
+			loc = verificationLoop_VerificationLoop_l86 & (((!(instance_S_ChannelA)) & (!(instance_S_ChannelB))) & ((!((instance_T_1_IN) = (FALSE))) & ((instance_T_1_running) = (FALSE)))) : __GLOBAL_TIME;
+			TRUE  : instance_T_1_start;
+		esac;
+		init(T_CYCLE) := 0sd32_0;
+		next(T_CYCLE) := case
+			loc = loop_start & (TRUE) : __random_T_CYCLE; -- Nondeterministic
+			TRUE  : T_CYCLE;
+		esac;
+		init(EoC) := FALSE;
+		next(EoC) := case
+			loc = verificationLoop_VerificationLoop_l142 & (TRUE) : TRUE;
+			loc = prepare_EoC & (TRUE) : FALSE;
+			TRUE  : EoC;
+		esac;
+		init(BoC) := FALSE;
+		next(BoC) := case
+			loc = loop_start & (TRUE) : TRUE;
+			loc = prepare_BoC & (TRUE) : FALSE;
+			TRUE  : BoC;
+		esac;
+
+INVAR instance_DiscrepancyTime > 0sd32_0;
+INVAR
+    T_CYCLE >= 0sd32_0 &
+    T_CYCLE < instance_DiscrepancyTime;
+
+-- Environment assumption : a running timer is eventually reset or expires.
+-- Excludes spurious paths where nondeterministic presets/cycle times combined with
+-- 32-bit wrap-around of __GLOBAL_TIME keep (__GLOBAL_TIME - (start + PT) >= 0) false forever.
+-- Every real execution (fixed preset, 0 < cycle time < preset) satisfies this constraint.
+JUSTICE !instance_T_1_running | instance_T_1_Q;
+
+-- Requirement
+-- first state only
+-- LTLSPEC G( (!EoC) | (EoC & (!(instance_Activate) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_0) & !(instance_Ready)) & !(instance_S_EquivalentOut)) & !(instance_SafetyDemand)) & !(instance_Error))))) );
+-- full spec
+LTLSPEC (((G(
+  (!EoC) | (EoC & (!(instance_Activate) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_0) & !(instance_Ready)) & !(instance_S_EquivalentOut)) & !(instance_SafetyDemand)) & !(instance_Error))
+  & X((!EoC) U (
+    EoC & (((instance_Activate & !(instance_S_ChannelA)) & !(instance_S_ChannelB)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34817) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+    & X((!EoC) U (
+      EoC & (((instance_Activate & !(instance_S_ChannelA)) & !(instance_S_ChannelB)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34817) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+      & X((!EoC) U (
+        EoC & (((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34818) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+        & X((!EoC) U (
+          EoC & ((((instance_Activate & !(instance_S_ChannelA)) & !(instance_S_ChannelB)) & !(instance_T_1_Q)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34817) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+          & X((!EoC) U (
+            EoC & (((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34818) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+            & X((!EoC) U (
+              EoC & ((((instance_Activate & instance_S_ChannelA) & instance_S_ChannelB) & !(instance_T_1_Q)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_32768) & instance_Ready) & instance_S_EquivalentOut) & !(instance_SafetyDemand)) & !(instance_Error))
+              & X((!EoC) U (
+                EoC & (((instance_Activate & instance_S_ChannelA) & instance_S_ChannelB) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_32768) & instance_Ready) & instance_S_EquivalentOut) & !(instance_SafetyDemand)) & !(instance_Error))
+                & X((!EoC) U (
+                  EoC & (((instance_Activate & !(instance_S_ChannelA)) & instance_S_ChannelB) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34822) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+                  & X((!EoC) U (
+                    EoC & ((((instance_Activate & !(instance_S_ChannelA)) & !(instance_S_ChannelB)) & !(instance_T_1_Q)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34817) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+                    & X((!EoC) U (
+                      EoC & (((instance_Activate & !(instance_S_ChannelA)) & instance_S_ChannelB) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34820) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+                      & X((!EoC) U (
+                        EoC & ((((instance_Activate & !(instance_S_ChannelA)) & !(instance_S_ChannelB)) & !(instance_T_1_Q)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34817) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+                        & X((!EoC) U (
+                          EoC & (((instance_Activate & !(instance_S_ChannelA)) & instance_S_ChannelB) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34820) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+                          & X((!EoC) U (
+                            EoC & ((((instance_Activate & instance_S_ChannelA) & instance_S_ChannelB) & !(instance_T_1_Q)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_32768) & instance_Ready) & instance_S_EquivalentOut) & !(instance_SafetyDemand)) & !(instance_Error))
+                            & X((!EoC) U (
+                              EoC & (((instance_Activate & !(instance_S_ChannelA)) & !(instance_S_ChannelB)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34817) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+                              & X((!EoC) U (
+                                EoC & (((instance_Activate & instance_S_ChannelA) & instance_S_ChannelB) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_32768) & instance_Ready) & instance_S_EquivalentOut) & !(instance_SafetyDemand)) & !(instance_Error))
+                                & X((!EoC) U (
+                                  EoC & (((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34822) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+                                  & ((!EoC | (EoC &
+                                    (((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34822) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error)))) U
+                                    (EoC & ((instance_T_1_Q & instance_DiagCode = 0ud16_49200) | !(((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB))))))))
+                                ))))
+                              ))))
+                            ))))
+                          ))))
+                        ))))
+                      ))))
+                    ))))
+                  ))))
+                ))))
+              ))))
+            ))))
+          ))))
+        ))))
+      ))))
+    ))))
+  )))))
+) & (((((((((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) & !(instance_T_1_Q)) & instance_DiagCode = 0ud16_34822) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+-> X((!EoC) U (
+  EoC & (((((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) & instance_T_1_Q) & instance_DiagCode = 0ud16_49200) -> ((((((instance_T_1_Q & instance_DiagCode = 0ud16_49200) & instance_Ready) & !(instance_S_EquivalentOut)) & !(instance_SafetyDemand)) & instance_Error)
+  & X((!EoC) U (
+    EoC & (((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) -> ((((((instance_T_1_Q & instance_DiagCode = 0ud16_49200) & instance_Ready) & !(instance_S_EquivalentOut)) & !(instance_SafetyDemand)) & instance_Error)
+    & X((!EoC) U (
+      EoC & (((instance_Activate & !(instance_S_ChannelA)) & !(instance_S_ChannelB)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34817) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+      & X((!EoC) U (
+        EoC & (((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34818) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+        & ((!EoC | (EoC &
+          (((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34818) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error)))) U
+          (EoC & ((instance_T_1_Q & instance_DiagCode = 0ud16_49168) | !(((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB))))))))
+      ))))
+    ))))
+  ))))
+)))) & (((((((((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) & !(instance_T_1_Q)) & instance_DiagCode = 0ud16_34818) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+-> X((!EoC) U (
+  EoC & (((((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) & instance_T_1_Q) & instance_DiagCode = 0ud16_49168) -> ((((((instance_T_1_Q & instance_DiagCode = 0ud16_49168) & instance_Ready) & !(instance_S_EquivalentOut)) & !(instance_SafetyDemand)) & instance_Error)
+  & X((!EoC) U (
+    EoC & (((instance_Activate & instance_S_ChannelA) & !(instance_S_ChannelB)) -> ((((((instance_T_1_Q & instance_DiagCode = 0ud16_49168) & instance_Ready) & !(instance_S_EquivalentOut)) & !(instance_SafetyDemand)) & instance_Error)
+    & X((!EoC) U (
+      EoC & (((instance_Activate & !(instance_S_ChannelA)) & !(instance_S_ChannelB)) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34817) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+      & X((!EoC) U (
+        EoC & (((instance_Activate & !(instance_S_ChannelA)) & instance_S_ChannelB) -> ((((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34820) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+        & ((!EoC | (EoC &
+          (((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34820) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error)))) U
+          (EoC & ((instance_T_1_Q & instance_DiagCode = 0ud16_49184) | !(((instance_Activate & !(instance_S_ChannelA)) & instance_S_ChannelB)))))))
+      ))))
+    ))))
+  ))))
+)))) & (((((((((instance_Activate & !(instance_S_ChannelA)) & instance_S_ChannelB) & !(instance_T_1_Q)) & instance_DiagCode = 0ud16_34820) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error))
+-> X((!EoC) U (
+  EoC & (((((instance_Activate & !(instance_S_ChannelA)) & instance_S_ChannelB) & instance_T_1_Q) & instance_DiagCode = 0ud16_49184) -> ((((((instance_T_1_Q & instance_DiagCode = 0ud16_49184) & instance_Ready) & !(instance_S_EquivalentOut)) & !(instance_SafetyDemand)) & instance_Error)
+  & X((!EoC) U (
+    EoC & (((instance_Activate & !(instance_S_ChannelA)) & instance_S_ChannelB) -> ((((((instance_T_1_Q & instance_DiagCode = 0ud16_49184) & instance_Ready) & !(instance_S_EquivalentOut)) & !(instance_SafetyDemand)) & instance_Error)
+    & X((!EoC) U (
+      EoC & (((instance_Activate & !(instance_S_ChannelA)) & !(instance_S_ChannelB)) -> (((((!(instance_T_1_Q) & instance_DiagCode = 0ud16_34817) & instance_Ready) & !(instance_S_EquivalentOut)) & instance_SafetyDemand) & !(instance_Error)))
+    ))))
+  ))))
+))));

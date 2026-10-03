@@ -1,0 +1,360 @@
+-- Model
+MODULE main
+	VAR
+		loc : {init_pv, end, loop_start, prepare_BoC, l_main_call, prepare_EoC, verificationLoop_VerificationLoop_init, verificationLoop_VerificationLoop_l22, verificationLoop_VerificationLoop_l32, verificationLoop_VerificationLoop_l42, verificationLoop_VerificationLoop_l52, verificationLoop_VerificationLoop_l62, verificationLoop_VerificationLoop_l72, verificationLoop_VerificationLoop_l82, verificationLoop_VerificationLoop_l88, verificationLoop_VerificationLoop_l98, verificationLoop_VerificationLoop_l104, verificationLoop_VerificationLoop_l130, x8, x40, x60, x74, x84};
+		instance_Activate : boolean; -- frozen
+		instance_S_Button1 : boolean; -- frozen
+		instance_S_Button2 : boolean; -- frozen
+		instance_Ready : boolean; -- frozen
+		instance_S_TwoHandOut : boolean; -- frozen
+		instance_SafetyDemand : boolean; -- frozen
+		instance_Error : boolean; -- frozen
+		instance_DiagCode : unsigned word[16]; -- frozen
+		EoC : boolean; -- frozen
+		BoC : boolean; -- frozen
+	
+	ASSIGN
+		-- CFA structure (loc)
+		init(loc) := init_pv;
+		next(loc) := case
+			loc = init_pv & (TRUE) : loop_start;
+			loc = loop_start & (TRUE) : prepare_BoC;
+			loc = prepare_BoC & (TRUE) : l_main_call;
+			loc = verificationLoop_VerificationLoop_l130 & (TRUE) : prepare_EoC;
+			loc = prepare_EoC & (TRUE) : loop_start;
+			loc = verificationLoop_VerificationLoop_init & (!(instance_Activate)) : verificationLoop_VerificationLoop_l130;
+			loc = verificationLoop_VerificationLoop_init & ((!(!(instance_Activate))) & ((instance_DiagCode) = (0ud16_0))) : x8;
+			loc = verificationLoop_VerificationLoop_init & ((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32769))) & ((instance_S_Button1) & (instance_S_Button2))) : verificationLoop_VerificationLoop_l22;
+			loc = verificationLoop_VerificationLoop_init & ((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32769))) & ((!((instance_S_Button1) & (instance_S_Button2))) & (instance_S_Button1))) : verificationLoop_VerificationLoop_l22;
+			loc = verificationLoop_VerificationLoop_init & ((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32769))) & (((!((instance_S_Button1) & (instance_S_Button2))) & (!(instance_S_Button1))) & (instance_S_Button2))) : verificationLoop_VerificationLoop_l22;
+			loc = verificationLoop_VerificationLoop_init & ((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32769))) & ((!((instance_S_Button1) & (instance_S_Button2))) & ((!((!((instance_S_Button1) & (instance_S_Button2))) & (instance_S_Button1))) & (!(((!((instance_S_Button1) & (instance_S_Button2))) & (!(instance_S_Button1))) & (instance_S_Button2)))))) : verificationLoop_VerificationLoop_l22;
+			loc = verificationLoop_VerificationLoop_l22 & (TRUE) : x8;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & ((instance_DiagCode) = (0ud16_34818))) & ((instance_S_Button1) & (instance_S_Button2))) : verificationLoop_VerificationLoop_l32;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & ((instance_DiagCode) = (0ud16_34818))) & ((!((instance_S_Button1) & (instance_S_Button2))) & (instance_S_Button1))) : verificationLoop_VerificationLoop_l32;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & ((instance_DiagCode) = (0ud16_34818))) & (((!((instance_S_Button1) & (instance_S_Button2))) & (!(instance_S_Button1))) & (instance_S_Button2))) : verificationLoop_VerificationLoop_l32;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & ((instance_DiagCode) = (0ud16_34818))) & ((!((instance_S_Button1) & (instance_S_Button2))) & ((!((!((instance_S_Button1) & (instance_S_Button2))) & (instance_S_Button1))) & (!(((!((instance_S_Button1) & (instance_S_Button2))) & (!(instance_S_Button1))) & (instance_S_Button2)))))) : verificationLoop_VerificationLoop_l32;
+			loc = verificationLoop_VerificationLoop_l32 & (TRUE) : x8;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (!((instance_S_Button1) | (instance_S_Button2)))) : verificationLoop_VerificationLoop_l42;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & ((!(!((instance_S_Button1) | (instance_S_Button2)))) & ((!(instance_S_Button1)) & (instance_S_Button2)))) : verificationLoop_VerificationLoop_l42;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (((!(!((instance_S_Button1) | (instance_S_Button2)))) & (!((!(instance_S_Button1)) & (instance_S_Button2)))) & ((instance_S_Button1) & (instance_S_Button2)))) : verificationLoop_VerificationLoop_l42;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & ((!(!((instance_S_Button1) | (instance_S_Button2)))) & ((!((!(!((instance_S_Button1) | (instance_S_Button2)))) & ((!(instance_S_Button1)) & (instance_S_Button2)))) & (!(((!(!((instance_S_Button1) | (instance_S_Button2)))) & (!((!(instance_S_Button1)) & (instance_S_Button2)))) & ((instance_S_Button1) & (instance_S_Button2))))))) : verificationLoop_VerificationLoop_l42;
+			loc = verificationLoop_VerificationLoop_l42 & (TRUE) : x8;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & (!((instance_S_Button1) | (instance_S_Button2)))) : verificationLoop_VerificationLoop_l52;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & ((!(!((instance_S_Button1) | (instance_S_Button2)))) & ((instance_S_Button1) & (!(instance_S_Button2))))) : verificationLoop_VerificationLoop_l52;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & (((!(!((instance_S_Button1) | (instance_S_Button2)))) & (!((instance_S_Button1) & (!(instance_S_Button2))))) & ((instance_S_Button1) & (instance_S_Button2)))) : verificationLoop_VerificationLoop_l52;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & ((!(!((instance_S_Button1) | (instance_S_Button2)))) & ((!((!(!((instance_S_Button1) | (instance_S_Button2)))) & ((instance_S_Button1) & (!(instance_S_Button2))))) & (!(((!(!((instance_S_Button1) | (instance_S_Button2)))) & (!((instance_S_Button1) & (!(instance_S_Button2))))) & ((instance_S_Button1) & (instance_S_Button2))))))) : verificationLoop_VerificationLoop_l52;
+			loc = verificationLoop_VerificationLoop_l52 & (TRUE) : x8;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & ((instance_DiagCode) = (0ud16_34824))) & ((instance_S_Button1) & (instance_S_Button2))) : verificationLoop_VerificationLoop_l62;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & ((instance_DiagCode) = (0ud16_34824))) & ((!((instance_S_Button1) & (instance_S_Button2))) & ((!(instance_S_Button1)) & (instance_S_Button2)))) : verificationLoop_VerificationLoop_l62;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & ((instance_DiagCode) = (0ud16_34824))) & (((!((instance_S_Button1) & (instance_S_Button2))) & (!((!(instance_S_Button1)) & (instance_S_Button2)))) & (!((instance_S_Button1) | (instance_S_Button2))))) : verificationLoop_VerificationLoop_l62;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & ((instance_DiagCode) = (0ud16_34824))) & ((!((instance_S_Button1) & (instance_S_Button2))) & ((!((!((instance_S_Button1) & (instance_S_Button2))) & ((!(instance_S_Button1)) & (instance_S_Button2)))) & (!(((!((instance_S_Button1) & (instance_S_Button2))) & (!((!(instance_S_Button1)) & (instance_S_Button2)))) & (!((instance_S_Button1) | (instance_S_Button2)))))))) : verificationLoop_VerificationLoop_l62;
+			loc = verificationLoop_VerificationLoop_l62 & (TRUE) : x8;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & ((instance_DiagCode) = (0ud16_34826))) & ((instance_S_Button1) & (instance_S_Button2))) : verificationLoop_VerificationLoop_l72;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & ((instance_DiagCode) = (0ud16_34826))) & ((!((instance_S_Button1) & (instance_S_Button2))) & ((instance_S_Button1) & (!(instance_S_Button2))))) : verificationLoop_VerificationLoop_l72;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & ((instance_DiagCode) = (0ud16_34826))) & (((!((instance_S_Button1) & (instance_S_Button2))) & (!((instance_S_Button1) & (!(instance_S_Button2))))) & (!((instance_S_Button1) | (instance_S_Button2))))) : verificationLoop_VerificationLoop_l72;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & ((instance_DiagCode) = (0ud16_34826))) & ((!((instance_S_Button1) & (instance_S_Button2))) & ((!((!((instance_S_Button1) & (instance_S_Button2))) & ((instance_S_Button1) & (!(instance_S_Button2))))) & (!(((!((instance_S_Button1) & (instance_S_Button2))) & (!((instance_S_Button1) & (!(instance_S_Button2))))) & (!((instance_S_Button1) | (instance_S_Button2)))))))) : verificationLoop_VerificationLoop_l72;
+			loc = verificationLoop_VerificationLoop_l72 & (TRUE) : x8;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & ((instance_DiagCode) = (0ud16_34828))) & ((!(instance_S_Button1)) & (instance_S_Button2))) : verificationLoop_VerificationLoop_l82;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & ((instance_DiagCode) = (0ud16_34828))) & ((!((!(instance_S_Button1)) & (instance_S_Button2))) & ((instance_S_Button1) & (!(instance_S_Button2))))) : verificationLoop_VerificationLoop_l82;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & ((instance_DiagCode) = (0ud16_34828))) & (((!((!(instance_S_Button1)) & (instance_S_Button2))) & (!((instance_S_Button1) & (!(instance_S_Button2))))) & (!((instance_S_Button1) | (instance_S_Button2))))) : verificationLoop_VerificationLoop_l82;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & ((instance_DiagCode) = (0ud16_34828))) & ((!((!(instance_S_Button1)) & (instance_S_Button2))) & ((!((!((!(instance_S_Button1)) & (instance_S_Button2))) & ((instance_S_Button1) & (!(instance_S_Button2))))) & (!(((!((!(instance_S_Button1)) & (instance_S_Button2))) & (!((instance_S_Button1) & (!(instance_S_Button2))))) & (!((instance_S_Button1) | (instance_S_Button2)))))))) : verificationLoop_VerificationLoop_l82;
+			loc = verificationLoop_VerificationLoop_l82 & (TRUE) : x8;
+			loc = verificationLoop_VerificationLoop_init & (((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & ((instance_DiagCode) = (0ud16_34830))) & (!((instance_S_Button1) | (instance_S_Button2)))) : verificationLoop_VerificationLoop_l88;
+			loc = verificationLoop_VerificationLoop_init & (((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & ((instance_DiagCode) = (0ud16_34830))) & (!(!((instance_S_Button1) | (instance_S_Button2))))) : verificationLoop_VerificationLoop_l88;
+			loc = verificationLoop_VerificationLoop_l88 & (TRUE) : x8;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & ((instance_DiagCode) = (0ud16_32768))) & ((instance_S_Button1) & (!(instance_S_Button2)))) : verificationLoop_VerificationLoop_l98;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & ((instance_DiagCode) = (0ud16_32768))) & ((!((instance_S_Button1) & (!(instance_S_Button2)))) & ((!(instance_S_Button1)) & (instance_S_Button2)))) : verificationLoop_VerificationLoop_l98;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & ((instance_DiagCode) = (0ud16_32768))) & (((!((instance_S_Button1) & (!(instance_S_Button2)))) & (!((!(instance_S_Button1)) & (instance_S_Button2)))) & (!((instance_S_Button1) | (instance_S_Button2))))) : verificationLoop_VerificationLoop_l98;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & ((instance_DiagCode) = (0ud16_32768))) & ((!((instance_S_Button1) & (!(instance_S_Button2)))) & ((!((!((instance_S_Button1) & (!(instance_S_Button2)))) & ((!(instance_S_Button1)) & (instance_S_Button2)))) & (!(((!((instance_S_Button1) & (!(instance_S_Button2)))) & (!((!(instance_S_Button1)) & (instance_S_Button2)))) & (!((instance_S_Button1) | (instance_S_Button2)))))))) : verificationLoop_VerificationLoop_l98;
+			loc = verificationLoop_VerificationLoop_l98 & (TRUE) : x8;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (!(((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200)))))) : x8;
+			loc = verificationLoop_VerificationLoop_init & (((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200))))) & (!((instance_S_Button1) | (instance_S_Button2)))) : verificationLoop_VerificationLoop_l104;
+			loc = verificationLoop_VerificationLoop_init & (((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200))))) & (!(!((instance_S_Button1) | (instance_S_Button2))))) : verificationLoop_VerificationLoop_l104;
+			loc = verificationLoop_VerificationLoop_l104 & (TRUE) : x8;
+			loc = l_main_call & (TRUE) : verificationLoop_VerificationLoop_init;
+			loc = x8 & (TRUE) : x40;
+			loc = x40 & (TRUE) : x60;
+			loc = x60 & (TRUE) : x74;
+			loc = x74 & (TRUE) : x84;
+			loc = x84 & (TRUE) : verificationLoop_VerificationLoop_l130;
+			TRUE: loc;
+		esac;
+		
+		init(instance_Activate) := FALSE;
+		next(instance_Activate) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_Activate;
+		esac;
+		init(instance_S_Button1) := FALSE;
+		next(instance_S_Button1) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_S_Button1;
+		esac;
+		init(instance_S_Button2) := FALSE;
+		next(instance_S_Button2) := case
+			loc = loop_start & (TRUE) : {TRUE, FALSE};
+			TRUE  : instance_S_Button2;
+		esac;
+		init(instance_Ready) := FALSE;
+		next(instance_Ready) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_Ready);
+			loc = x8 & (TRUE) : ((instance_DiagCode) = (0ud16_32768)) | ((!((instance_DiagCode) = (0ud16_32768))) & (instance_Ready));
+			loc = x40 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & (((instance_DiagCode) = (0ud16_32769)) | ((!((instance_DiagCode) = (0ud16_32769))) & (instance_Ready))));
+			loc = x60 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_32769)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32769))) & ((((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830)))))))) | ((!(((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830))))))))) & (instance_Ready))))));
+			loc = x74 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_32769)) & (instance_Ready)) | ((!((instance_DiagCode) = (0ud16_32769))) & (((((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830)))))))) & (instance_Ready)) | ((!(((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830))))))))) & ((((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200)))) | ((!(((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200))))) & (instance_Ready))))))));
+			TRUE  : instance_Ready;
+		esac;
+		init(instance_S_TwoHandOut) := FALSE;
+		next(instance_S_TwoHandOut) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_S_TwoHandOut);
+			loc = x8 & (TRUE) : ((instance_DiagCode) = (0ud16_32768)) | ((!((instance_DiagCode) = (0ud16_32768))) & (instance_S_TwoHandOut));
+			loc = x40 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_TwoHandOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((!((instance_DiagCode) = (0ud16_32769))) & (instance_S_TwoHandOut)));
+			loc = x74 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_TwoHandOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_32769)) & (instance_S_TwoHandOut)) | ((!((instance_DiagCode) = (0ud16_32769))) & ((!(((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830))))))))) & (instance_S_TwoHandOut)))));
+			loc = x84 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_S_TwoHandOut)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_32769)) & (instance_S_TwoHandOut)) | ((!((instance_DiagCode) = (0ud16_32769))) & (((((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830)))))))) & (instance_S_TwoHandOut)) | ((!(((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830))))))))) & ((!(((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200))))) & (instance_S_TwoHandOut)))))));
+			TRUE  : instance_S_TwoHandOut;
+		esac;
+		init(instance_SafetyDemand) := FALSE;
+		next(instance_SafetyDemand) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_SafetyDemand);
+			loc = x8 & (TRUE) : (!((instance_DiagCode) = (0ud16_32768))) & (instance_SafetyDemand);
+			loc = x40 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((!((instance_DiagCode) = (0ud16_32769))) & (instance_SafetyDemand)));
+			loc = x60 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_32769)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32769))) & ((((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830)))))))) | ((!(((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830))))))))) & (instance_SafetyDemand))))));
+			loc = x74 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_32769)) & (instance_SafetyDemand)) | ((!((instance_DiagCode) = (0ud16_32769))) & (((((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830)))))))) & (instance_SafetyDemand)) | ((!(((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830))))))))) & ((!(((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200))))) & (instance_SafetyDemand)))))));
+			TRUE  : instance_SafetyDemand;
+		esac;
+		init(instance_Error) := FALSE;
+		next(instance_Error) := case
+			loc = l_main_call & (TRUE) : (!(!(instance_Activate))) & (instance_Error);
+			loc = x8 & (TRUE) : (!((instance_DiagCode) = (0ud16_32768))) & (instance_Error);
+			loc = x40 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((!((instance_DiagCode) = (0ud16_32769))) & (instance_Error)));
+			loc = x60 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_32769)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32769))) & ((!(((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830))))))))) & (instance_Error)))));
+			loc = x84 & (TRUE) : (((instance_DiagCode) = (0ud16_32768)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32768))) & ((((instance_DiagCode) = (0ud16_32769)) & (instance_Error)) | ((!((instance_DiagCode) = (0ud16_32769))) & (((((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830)))))))) & (instance_Error)) | ((!(((instance_DiagCode) = (0ud16_34818)) | (((instance_DiagCode) = (0ud16_34820)) | (((instance_DiagCode) = (0ud16_34822)) | (((instance_DiagCode) = (0ud16_34824)) | (((instance_DiagCode) = (0ud16_34826)) | (((instance_DiagCode) = (0ud16_34828)) | ((instance_DiagCode) = (0ud16_34830))))))))) & ((((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200)))) | ((!(((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200))))) & (instance_Error))))))));
+			TRUE  : instance_Error;
+		esac;
+		init(instance_DiagCode) := 0ud16_0;
+		next(instance_DiagCode) := case
+			loc = verificationLoop_VerificationLoop_init & (!(instance_Activate)) : 0ud16_0;
+			loc = verificationLoop_VerificationLoop_init & ((!(!(instance_Activate))) & ((instance_DiagCode) = (0ud16_0))) : 0ud16_32769;
+			loc = verificationLoop_VerificationLoop_init & ((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32769))) & ((instance_S_Button1) & (instance_S_Button2))) : 0ud16_49200;
+			loc = verificationLoop_VerificationLoop_init & ((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32769))) & ((!((instance_S_Button1) & (instance_S_Button2))) & (instance_S_Button1))) : 0ud16_49168;
+			loc = verificationLoop_VerificationLoop_init & ((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32769))) & (((!((instance_S_Button1) & (instance_S_Button2))) & (!(instance_S_Button1))) & (instance_S_Button2))) : 0ud16_49184;
+			loc = verificationLoop_VerificationLoop_init & ((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & ((instance_DiagCode) = (0ud16_32769))) & ((!((instance_S_Button1) & (instance_S_Button2))) & ((!((!((instance_S_Button1) & (instance_S_Button2))) & (instance_S_Button1))) & (!(((!((instance_S_Button1) & (instance_S_Button2))) & (!(instance_S_Button1))) & (instance_S_Button2)))))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & ((instance_DiagCode) = (0ud16_34818))) & ((instance_S_Button1) & (instance_S_Button2))) : 0ud16_32768;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & ((instance_DiagCode) = (0ud16_34818))) & ((!((instance_S_Button1) & (instance_S_Button2))) & (instance_S_Button1))) : 0ud16_34820;
+			loc = verificationLoop_VerificationLoop_init & (((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & ((instance_DiagCode) = (0ud16_34818))) & (((!((instance_S_Button1) & (instance_S_Button2))) & (!(instance_S_Button1))) & (instance_S_Button2))) : 0ud16_34822;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (!((instance_S_Button1) | (instance_S_Button2)))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & ((!(!((instance_S_Button1) | (instance_S_Button2)))) & ((!(instance_S_Button1)) & (instance_S_Button2)))) : 0ud16_34830;
+			loc = verificationLoop_VerificationLoop_init & ((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & ((instance_DiagCode) = (0ud16_34820))) & (((!(!((instance_S_Button1) | (instance_S_Button2)))) & (!((!(instance_S_Button1)) & (instance_S_Button2)))) & ((instance_S_Button1) & (instance_S_Button2)))) : 0ud16_32768;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & (!((instance_S_Button1) | (instance_S_Button2)))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & ((!(!((instance_S_Button1) | (instance_S_Button2)))) & ((instance_S_Button1) & (!(instance_S_Button2))))) : 0ud16_34830;
+			loc = verificationLoop_VerificationLoop_init & (((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & ((instance_DiagCode) = (0ud16_34822))) & (((!(!((instance_S_Button1) | (instance_S_Button2)))) & (!((instance_S_Button1) & (!(instance_S_Button2))))) & ((instance_S_Button1) & (instance_S_Button2)))) : 0ud16_32768;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & ((instance_DiagCode) = (0ud16_34824))) & ((instance_S_Button1) & (instance_S_Button2))) : 0ud16_34828;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & ((instance_DiagCode) = (0ud16_34824))) & ((!((instance_S_Button1) & (instance_S_Button2))) & ((!(instance_S_Button1)) & (instance_S_Button2)))) : 0ud16_34826;
+			loc = verificationLoop_VerificationLoop_init & ((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & ((instance_DiagCode) = (0ud16_34824))) & (((!((instance_S_Button1) & (instance_S_Button2))) & (!((!(instance_S_Button1)) & (instance_S_Button2)))) & (!((instance_S_Button1) | (instance_S_Button2))))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & ((instance_DiagCode) = (0ud16_34826))) & ((instance_S_Button1) & (instance_S_Button2))) : 0ud16_34828;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & ((instance_DiagCode) = (0ud16_34826))) & ((!((instance_S_Button1) & (instance_S_Button2))) & ((instance_S_Button1) & (!(instance_S_Button2))))) : 0ud16_34824;
+			loc = verificationLoop_VerificationLoop_init & (((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & ((instance_DiagCode) = (0ud16_34826))) & (((!((instance_S_Button1) & (instance_S_Button2))) & (!((instance_S_Button1) & (!(instance_S_Button2))))) & (!((instance_S_Button1) | (instance_S_Button2))))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & ((instance_DiagCode) = (0ud16_34828))) & ((!(instance_S_Button1)) & (instance_S_Button2))) : 0ud16_34826;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & ((instance_DiagCode) = (0ud16_34828))) & ((!((!(instance_S_Button1)) & (instance_S_Button2))) & ((instance_S_Button1) & (!(instance_S_Button2))))) : 0ud16_34824;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & ((instance_DiagCode) = (0ud16_34828))) & (((!((!(instance_S_Button1)) & (instance_S_Button2))) & (!((instance_S_Button1) & (!(instance_S_Button2))))) & (!((instance_S_Button1) | (instance_S_Button2))))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & (((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & ((instance_DiagCode) = (0ud16_34830))) & (!((instance_S_Button1) | (instance_S_Button2)))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & ((instance_DiagCode) = (0ud16_32768))) & ((instance_S_Button1) & (!(instance_S_Button2)))) : 0ud16_34824;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & ((instance_DiagCode) = (0ud16_32768))) & ((!((instance_S_Button1) & (!(instance_S_Button2)))) & ((!(instance_S_Button1)) & (instance_S_Button2)))) : 0ud16_34826;
+			loc = verificationLoop_VerificationLoop_init & ((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & ((instance_DiagCode) = (0ud16_32768))) & (((!((instance_S_Button1) & (!(instance_S_Button2)))) & (!((!(instance_S_Button1)) & (instance_S_Button2)))) & (!((instance_S_Button1) | (instance_S_Button2))))) : 0ud16_34818;
+			loc = verificationLoop_VerificationLoop_init & (((((((((((((!(!(instance_Activate))) & (!((instance_DiagCode) = (0ud16_0)))) & (!((instance_DiagCode) = (0ud16_32769)))) & (!((instance_DiagCode) = (0ud16_34818)))) & (!((instance_DiagCode) = (0ud16_34820)))) & (!((instance_DiagCode) = (0ud16_34822)))) & (!((instance_DiagCode) = (0ud16_34824)))) & (!((instance_DiagCode) = (0ud16_34826)))) & (!((instance_DiagCode) = (0ud16_34828)))) & (!((instance_DiagCode) = (0ud16_34830)))) & (!((instance_DiagCode) = (0ud16_32768)))) & (((instance_DiagCode) = (0ud16_49168)) | (((instance_DiagCode) = (0ud16_49184)) | ((instance_DiagCode) = (0ud16_49200))))) & (!((instance_S_Button1) | (instance_S_Button2)))) : 0ud16_34818;
+			TRUE  : instance_DiagCode;
+		esac;
+		init(EoC) := FALSE;
+		next(EoC) := case
+			loc = verificationLoop_VerificationLoop_l130 & (TRUE) : TRUE;
+			loc = prepare_EoC & (TRUE) : FALSE;
+			TRUE  : EoC;
+		esac;
+		init(BoC) := FALSE;
+		next(BoC) := case
+			loc = loop_start & (TRUE) : TRUE;
+			loc = prepare_BoC & (TRUE) : FALSE;
+			TRUE  : BoC;
+		esac;
+
+-- Requirement
+-- first state only
+-- LTLSPEC G( (!EoC) | (EoC & (!(instance_Activate) -> (((((instance_DiagCode = 0ud16_0 & !(instance_Ready)) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & !(instance_Error))))) );
+-- full spec
+LTLSPEC G(
+  (!EoC) | (EoC & (!(instance_Activate) -> (((((instance_DiagCode = 0ud16_0 & !(instance_Ready)) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & !(instance_Error))
+  & X((!EoC) U (
+    EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_32769 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & !(instance_Error))
+    & X((!EoC) U (
+      EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_49168 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & instance_Error)
+      & X((!EoC) U (
+        EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_49168 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & instance_Error)
+        & X((!EoC) U (
+          EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+          & X((!EoC) U (
+            EoC & (!(instance_Activate) -> (((((instance_DiagCode = 0ud16_0 & !(instance_Ready)) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & !(instance_Error))
+            & X((!EoC) U (
+              EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_32769 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & !(instance_Error))
+              & X((!EoC) U (
+                EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_49184 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & instance_Error)
+                & X((!EoC) U (
+                  EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_49184 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & instance_Error)
+                  & X((!EoC) U (
+                    EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                    & X((!EoC) U (
+                      EoC & (!(instance_Activate) -> (((((instance_DiagCode = 0ud16_0 & !(instance_Ready)) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & !(instance_Error))
+                      & X((!EoC) U (
+                        EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_32769 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & !(instance_Error))
+                        & X((!EoC) U (
+                          EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_49200 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & instance_Error)
+                          & X((!EoC) U (
+                            EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_49200 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & instance_Error)
+                            & X((!EoC) U (
+                              EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                              & X((!EoC) U (
+                                EoC & (!(instance_Activate) -> (((((instance_DiagCode = 0ud16_0 & !(instance_Ready)) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & !(instance_Error))
+                                & X((!EoC) U (
+                                  EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_32769 & instance_Ready) & !(instance_S_TwoHandOut)) & !(instance_SafetyDemand)) & !(instance_Error))
+                                  & X((!EoC) U (
+                                    EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                    & X((!EoC) U (
+                                      EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                      & X((!EoC) U (
+                                        EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_32768 & instance_Ready) & instance_S_TwoHandOut) & !(instance_SafetyDemand)) & !(instance_Error))
+                                        & X((!EoC) U (
+                                          EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_32768 & instance_Ready) & instance_S_TwoHandOut) & !(instance_SafetyDemand)) & !(instance_Error))
+                                          & X((!EoC) U (
+                                            EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34824 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                            & X((!EoC) U (
+                                              EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34824 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                              & X((!EoC) U (
+                                                EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34828 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                & X((!EoC) U (
+                                                  EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34828 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                  & X((!EoC) U (
+                                                    EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34826 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                    & X((!EoC) U (
+                                                      EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34826 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                      & X((!EoC) U (
+                                                        EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34828 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                        & X((!EoC) U (
+                                                          EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34824 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                          & X((!EoC) U (
+                                                            EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34826 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                            & X((!EoC) U (
+                                                              EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34824 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                              & X((!EoC) U (
+                                                                EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                & X((!EoC) U (
+                                                                  EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_32768 & instance_Ready) & instance_S_TwoHandOut) & !(instance_SafetyDemand)) & !(instance_Error))
+                                                                  & X((!EoC) U (
+                                                                    EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34826 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                    & X((!EoC) U (
+                                                                      EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                      & X((!EoC) U (
+                                                                        EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_32768 & instance_Ready) & instance_S_TwoHandOut) & !(instance_SafetyDemand)) & !(instance_Error))
+                                                                        & X((!EoC) U (
+                                                                          EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34824 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                          & X((!EoC) U (
+                                                                            EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34828 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                            & X((!EoC) U (
+                                                                              EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                              & X((!EoC) U (
+                                                                                EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_32768 & instance_Ready) & instance_S_TwoHandOut) & !(instance_SafetyDemand)) & !(instance_Error))
+                                                                                & X((!EoC) U (
+                                                                                  EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                  & X((!EoC) U (
+                                                                                    EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34820 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                    & X((!EoC) U (
+                                                                                      EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34820 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                      & X((!EoC) U (
+                                                                                        EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                        & X((!EoC) U (
+                                                                                          EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34820 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                          & X((!EoC) U (
+                                                                                            EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34830 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                            & X((!EoC) U (
+                                                                                              EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34830 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                              & X((!EoC) U (
+                                                                                                EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                & X((!EoC) U (
+                                                                                                  EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34820 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                  & X((!EoC) U (
+                                                                                                    EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_32768 & instance_Ready) & instance_S_TwoHandOut) & !(instance_SafetyDemand)) & !(instance_Error))
+                                                                                                    & X((!EoC) U (
+                                                                                                      EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                      & X((!EoC) U (
+                                                                                                        EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34822 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                        & X((!EoC) U (
+                                                                                                          EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34822 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                          & X((!EoC) U (
+                                                                                                            EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                            & X((!EoC) U (
+                                                                                                              EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34822 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                              & X((!EoC) U (
+                                                                                                                EoC & (((instance_Activate & instance_S_Button1) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34830 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                                & X((!EoC) U (
+                                                                                                                  EoC & (((instance_Activate & !(instance_S_Button1)) & !(instance_S_Button2)) -> (((((instance_DiagCode = 0ud16_34818 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                                  & X((!EoC) U (
+                                                                                                                    EoC & (((instance_Activate & !(instance_S_Button1)) & instance_S_Button2) -> (((((instance_DiagCode = 0ud16_34822 & instance_Ready) & !(instance_S_TwoHandOut)) & instance_SafetyDemand) & !(instance_Error))
+                                                                                                                    & X((!EoC) U (
+                                                                                                                      EoC & (((instance_Activate & instance_S_Button1) & instance_S_Button2) -> ((((instance_DiagCode = 0ud16_32768 & instance_Ready) & instance_S_TwoHandOut) & !(instance_SafetyDemand)) & !(instance_Error)))
+                                                                                                                    ))))
+                                                                                                                  ))))
+                                                                                                                ))))
+                                                                                                              ))))
+                                                                                                            ))))
+                                                                                                          ))))
+                                                                                                        ))))
+                                                                                                      ))))
+                                                                                                    ))))
+                                                                                                  ))))
+                                                                                                ))))
+                                                                                              ))))
+                                                                                            ))))
+                                                                                          ))))
+                                                                                        ))))
+                                                                                      ))))
+                                                                                    ))))
+                                                                                  ))))
+                                                                                ))))
+                                                                              ))))
+                                                                            ))))
+                                                                          ))))
+                                                                        ))))
+                                                                      ))))
+                                                                    ))))
+                                                                  ))))
+                                                                ))))
+                                                              ))))
+                                                            ))))
+                                                          ))))
+                                                        ))))
+                                                      ))))
+                                                    ))))
+                                                  ))))
+                                                ))))
+                                              ))))
+                                            ))))
+                                          ))))
+                                        ))))
+                                      ))))
+                                    ))))
+                                  ))))
+                                ))))
+                              ))))
+                            ))))
+                          ))))
+                        ))))
+                      ))))
+                    ))))
+                  ))))
+                ))))
+              ))))
+            ))))
+          ))))
+        ))))
+      ))))
+    ))))
+  )))))
+);

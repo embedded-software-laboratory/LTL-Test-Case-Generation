@@ -1,5 +1,3 @@
-#C:\Users\jb\Desktop\promo\testgen\testgen\plcopen-fbs\SF_FootSwitch_LTL.txt
-#/Users/jb/promo/testgen/testgen/plcopen-fbs/SF_FootSwitch_LTL.txt
 
 #testname=SF_FootSwitch_Test
 #testedFbName=SF_FootSwitch_BranchCounters

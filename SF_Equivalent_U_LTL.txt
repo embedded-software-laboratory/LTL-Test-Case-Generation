@@ -1,8 +1,6 @@
 # This spec requires T_1.PT > 0, because only then the first call of T_1 ends with T_1.Q being false.
 # That is, only with this precondition "(fb.S_ChannelA && !fb.S_ChannelB) -> (!fb.T_1.Q && fb.DiagCode = 34818)" is correct.
 
-#C:\Users\jb\Desktop\promo\testgen\testgen\plcopen-fbs\SF_Equivalent_U_LTL.txt
-#/Users/jb/promo/testgen/testgen/plcopen-fbs/SF_Equivalent_U_LTL.txt
 
 
 #testname=SF_Equivalent_U_Test

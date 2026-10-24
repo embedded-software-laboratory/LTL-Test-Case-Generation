@@ -1,5 +1,3 @@
-#C:\Users\jb\Desktop\promo\testgen\testgen\plcopen-fbs\SF_EnableSwitch2_LTL.txt
-#/Users/jb/promo/testgen/testgen/plcopen-fbs/SF_EnableSwitch2_LTL.txt
 
 #testname=SF_EnableSwitch2_Test
 #testedFbName=SF_EnableSwitch2_BranchCounters

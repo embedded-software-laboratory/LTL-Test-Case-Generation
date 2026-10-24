@@ -1,7 +1,5 @@
 # This spec requires T_Init.PT > 0 and T_Monitoring.PT > 0, because only then the first call of these timers end with their Q being false.
 
-#C:\Users\jb\Desktop\promo\testgen\testgen\plcopen-fbs\SF_DoubleValveMonitoring_LTL.txt
-#/Users/jb/promo/testgen/testgen/plcopen-fbs/SF_DoubleValveMonitoring_LTL.txt
 
 
 #testname=SF_DoubleValveMonitoring_Test
